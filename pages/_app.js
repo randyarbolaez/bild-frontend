@@ -1,7 +1,25 @@
-import '../styles/globals.css'
+// import App from "next/app";
+import Page from "../components/Page";
+import { ApolloProvider } from "react-apollo";
+import data from "../lib/data";
 
-function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
-}
+const MyApp = ({ Component, pageProps, apollo }) => {
+  MyApp.getInitialProps = async ({ Component, ctx }) => {
+    let pageProps = {};
+    if (Component.getInitialProps) {
+      pageProps = await Component.getInitialProps(ctx);
+    }
+    // this exposes the query to the user
+    pageProps.query = ctx.res.query;
+    return { pageProps };
+  };
+  return (
+    <ApolloProvider client={apollo}>
+      <Page>
+        <Component {...pageProps} />
+      </Page>
+    </ApolloProvider>
+  );
+};
 
-export default MyApp
+export default data(MyApp);
