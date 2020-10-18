@@ -1,3 +1,11 @@
+## Check it out
+
+[https://bild-frontend.vercel.app/](https://bild-frontend.vercel.app/)
+
+## Backend
+
+[https://github.com/randyarbolaez/bild-api](https://github.com/randyarbolaez/bild-api)
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
