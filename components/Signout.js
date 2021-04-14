@@ -21,14 +21,15 @@ const Button = styled.button`
   transition: 0.5s;
   outline: none;
   :hover {
-    color: #fe5f55;
-    font-size: 2.4vw;
+    color: #66798c;
+    font-size: 2.5vw;
     transition: 0.5s;
     font-weight: bold;
-    border-left: 0.5vw solid #e9ecef;
-    border-right: 0.5vw solid #e9ecef;
-    border-top-right-radius: 25%;
-    border-bottom-left-radius: 25%;
+    // border-left: 0.5vw solid #e9ecef;
+    // border-right: 0.5vw solid #e9ecef;
+    // border-top-right-radius: 25%;
+    // border-bottom-left-radius: 25%;
+    cursor: pointer;
   }
   :active {
     font-size: 1.6vw;

@@ -14,16 +14,19 @@ const Container = styled.div`
   align-items: center;
 
   margin: 0 15%;
-  border-bottom-left-radius: 10%;
-  border-left: 1vw solid #fe5f55;
-  border-bottom-right-radius: 10%;
-  border-right: 1vw solid #fe5f55;
+  // border-bottom-left-radius: 10%;
+  // border-left: 1vw solid #fe5f55;
+  // border-bottom-right-radius: 10%;
+  // border-right: 1vw solid #fe5f55;
 `;
 
 const TitleContainer = styled.h1`
   color: #fe5f55;
-  font-size: 5vw;
+  font-size: 4.5vw;
   margin: 0;
+  :hover {
+    color: #fe2f22;
+  }
 `;
 
 const InputWrapper = styled.input`
@@ -54,14 +57,15 @@ const Button = styled.button`
   transition: 0.5s;
   outline: none;
   :hover {
-    color: #fe5f55;
-    font-size: 3vw;
+    color: #66798c;
+    font-size: 2.5vw;
     transition: 0.5s;
     font-weight: bold;
-    border-left: 0.5vw solid #e9ecef;
-    border-right: 0.5vw solid #e9ecef;
-    border-bottom-left-radius: 25%;
-    border-top-right-radius: 25%;
+    // border-left: 0.5vw solid #e9ecef;
+    // border-right: 0.5vw solid #e9ecef;
+    // border-bottom-left-radius: 25%;
+    // border-top-right-radius: 25%;
+    cursor: pointer;
   }
 `;
 
