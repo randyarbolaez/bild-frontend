@@ -20,12 +20,15 @@ let Fieldset = styled.fieldset`
   display: flex;
   justify-content: center;
   text-align: center;
+  flex-direction: column;
   border: none;
   padding: 0;
   width: 30vw;
   background: #fe5f55;
   margin: 0;
   padding: 5vh 0;
+  border-top-right-radius: 5%;
+  border-bottom-right-radius: 5%;
 `;
 
 let ErrorText = styled.p`
@@ -64,6 +67,7 @@ let ButtonDiv = styled.div`
 `;
 
 let InputButton = styled.input`
+  cursor: pointer;
   outline: none;
   font-family: "Montserrat", sans-serif;
   background-color: transparent;
@@ -76,6 +80,7 @@ let InputButton = styled.input`
   width: 12vw;
   :disabled {
     color: #d3d3d3;
+    cursor: default;
   }
   :hover {
     background-color: #fffff4;

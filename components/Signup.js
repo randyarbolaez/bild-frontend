@@ -37,6 +37,8 @@ let Fieldset = styled.fieldset`
   background: #fffff4;
   margin: 0;
   /* padding: 5vh 0; */
+  border-top-left-radius: 5%;
+  border-bottom-left-radius: 5%;
 `;
 
 let ErrorText = styled.p`
@@ -90,6 +92,7 @@ let ButtonDiv = styled.div`
 `;
 
 let InputButton = styled.input`
+  cursor: pointer;
   outline: none;
   font-family: "Montserrat", sans-serif;
   background-color: transparent;
@@ -103,6 +106,7 @@ let InputButton = styled.input`
   margin: 1vw 0;
   :disabled {
     color: #d3d3d3;
+    cursor: default;
   }
   :hover {
     background-color: #fe5f55;

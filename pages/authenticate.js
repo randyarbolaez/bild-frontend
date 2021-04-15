@@ -22,6 +22,8 @@ let WrapperSwitch = styled.div`
   flex-direction: column;
   text-align: center;
   justify-content: center;
+  // border-top-left-radius: 5%;
+  // border-bottom-left-radius: 5%;
 `;
 
 let Title = styled.h1`
@@ -53,6 +55,8 @@ let InputButton = styled.input`
   align-self: center;
   text-decoration: none;
   font-size: 1.2vw;
+  cursor: pointer;
+  outline: none;
 `;
 
 export default function authenticate() {
@@ -83,7 +87,13 @@ export default function authenticate() {
                 {isSignUp ? (
                   <Signup />
                 ) : (
-                  <WrapperSwitch style={{ backgroundColor: "#fffff4" }}>
+                  <WrapperSwitch
+                    style={{
+                      backgroundColor: "#fffff4",
+                      borderTopLeftRadius: "5%",
+                      borderBottomLeftRadius: "5%",
+                    }}
+                  >
                     <Title style={{ color: "#fe5f55" }}>Sign Up!</Title>
                     <SubTitle style={{ color: "#fe5f55" }}>
                       If you don't already have an account please sign up.
@@ -102,7 +112,13 @@ export default function authenticate() {
                 {!isSignUp ? (
                   <Signin />
                 ) : (
-                  <WrapperSwitch style={{ backgroundColor: "#fe5f55" }}>
+                  <WrapperSwitch
+                    style={{
+                      backgroundColor: "#fe5f55",
+                      borderTopRightRadius: "5%",
+                      borderBottomRightRadius: "5%",
+                    }}
+                  >
                     <Title style={{ color: "#fffff4" }}>Welcome Back!</Title>
                     <SubTitle style={{ color: "#fffff4" }}>
                       If you already have an account please sign in.
