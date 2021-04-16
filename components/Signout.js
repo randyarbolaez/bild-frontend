@@ -25,10 +25,6 @@ const Button = styled.button`
     font-size: 2.5vw;
     transition: 0.5s;
     font-weight: bold;
-    // border-left: 0.5vw solid #e9ecef;
-    // border-right: 0.5vw solid #e9ecef;
-    // border-top-right-radius: 25%;
-    // border-bottom-left-radius: 25%;
     cursor: pointer;
   }
   :active {

@@ -12,12 +12,7 @@ const Container = styled.div`
   justify-content: space-around;
   font-family: "Julius Sans One", sans-serif;
   align-items: center;
-
   margin: 0 15%;
-  // border-bottom-left-radius: 10%;
-  // border-left: 1vw solid #fe5f55;
-  // border-bottom-right-radius: 10%;
-  // border-right: 1vw solid #fe5f55;
 `;
 
 const TitleContainer = styled.h1`
@@ -61,10 +56,6 @@ const Button = styled.button`
     font-size: 2.5vw;
     transition: 0.5s;
     font-weight: bold;
-    // border-left: 0.5vw solid #e9ecef;
-    // border-right: 0.5vw solid #e9ecef;
-    // border-bottom-left-radius: 25%;
-    // border-top-right-radius: 25%;
     cursor: pointer;
   }
 `;
@@ -136,7 +127,5 @@ const Nav = () => {
     </User>
   );
 };
-
-// <InputWrapper type="text" name="" id="" placeholder="search" />;
 
 export default Nav;
