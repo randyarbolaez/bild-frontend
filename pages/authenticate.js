@@ -44,7 +44,7 @@ let SubTitle = styled.p`
 let InputButton = styled.input`
   font-family: "Montserrat", sans-serif;
   font-weight: bold;
-  width: 35%;
+  width: 30%;
   margin: 4px 2px;
   padding: 10px 0;
   border: none;
@@ -57,6 +57,13 @@ let InputButton = styled.input`
   font-size: 1.2vw;
   cursor: pointer;
   outline: none;
+  background-image: linear-gradient(to right, #fffff4, #fe5f55);
+  transition: 0.5s;
+  :hover {
+    // transition: 10s;
+    width: 36%;
+    background: none;
+  }
 `;
 
 export default function authenticate() {
