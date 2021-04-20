@@ -36,20 +36,13 @@ let Fieldset = styled.fieldset`
   width: 30vw;
   background: #fffff4;
   margin: 0;
-  /* padding: 5vh 0; */
   border-top-left-radius: 5%;
   border-bottom-left-radius: 5%;
-`;
-
-let ErrorText = styled.p`
-  color: #fe5f55;
-  font-size: 1.4vw;
 `;
 
 let Title = styled.h2`
   text-align: center;
   font-style: italic;
-  font-variant: small-caps;
   margin-bottom: 0.6vw;
   font-family: "Montserrat", sans-serif;
   color: #fe5f55;
@@ -58,17 +51,25 @@ let Title = styled.h2`
 `;
 
 let Input = styled.input`
-  margin-bottom: 1vw;
-  background: #fe5f55;
-  border-radius: 20px;
-  text-align: center;
+  margin-bottom: 2vw;
+  background-image: linear-gradient(to bottom, #fffff4, #fdfdf6);
+  border-radius: 0.4vw;
   border: none;
-  font-size: 2vw;
-  color: #fffff4;
+  border: 0.2vw solid #9a9a9a;
+  font-size: 1.2vw;
+  color: #9a9a9a;
   outline: none;
   padding: 10px 5px;
+  width: 16vw;
+  transition: 0.3s;
+  :hover {
+    transition: 0.3s;
+    border-color: #cdcdcd;
+  }
   ::placeholder {
-    color: #fffff4;
+    color: #cf8884;
+    color: #9a9a9a;
+    // color: #e4766f;
   }
 `;
 
@@ -79,7 +80,6 @@ let LabelFile = styled.label`
   background: #fe5f55;
   margin: 0 5vw;
   padding: 10px 5px;
-  /* width: 10%; */
   font-family: "Montserrat", sans-serif;
   border-radius: 20px;
   white-space: nowrap;
@@ -88,32 +88,34 @@ let LabelFile = styled.label`
 `;
 
 let ButtonDiv = styled.div`
-  text-align: center;
+  text-align: right;
+  padding-bottom: 4vh;
+  padding-top: 2vh;
 `;
 
 let InputButton = styled.input`
+  background-color: #fe5f55;
   cursor: pointer;
   outline: none;
   font-family: "Montserrat", sans-serif;
-  background-color: transparent;
-  color: #fe5f55;
-  font-weight: bold;
-  font-size: 2.3vw;
-  font-variant: small-caps;
+  color: #fffff4;
+  font-weight: 600;
+  font-size: 2vw;
   border: none;
   padding: 10px 0;
   width: 12vw;
-  margin: 1vw 0;
+  transition: 0.9;
+  border-top-left-radius: 0.4vw;
+  border-bottom-left-radius: 0.4vw;
   :disabled {
     color: #d3d3d3;
     cursor: default;
   }
   :hover {
-    background-color: #fe5f55;
+    transition: 0.9;
     color: #fffff4;
-    border-radius: 16px;
     :disabled {
-      background: none;
+      background: #fe5f55;
       color: #d3d3d3;
     }
   }
@@ -183,12 +185,12 @@ const Signup = (props) => {
             }}
           >
             <Fieldset>
-              {error && errorTimer && (
-                <ErrorText>Email is already taken.</ErrorText>
-              )}
               <Title>Sign Up</Title>
               <label htmlFor="email">
                 <Input
+                  style={{
+                    borderColor: error && errorTimer ? "#ff0f0f" : "",
+                  }}
                   required
                   type="email"
                   name="email"
@@ -256,18 +258,5 @@ const Signup = (props) => {
     </Mutation>
   );
 };
-
-// class Signup extends React.Component {
-//   state = {
-//     email: "",
-//     password: "",
-//   };
-
-//   saveToState = (e) => {
-//     this.setState({ [e.target.name]: e.target.value });
-//   };
-
-//   render
-// }
 
 export default Signup;

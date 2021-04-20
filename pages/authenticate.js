@@ -61,7 +61,7 @@ let InputButton = styled.input`
   transition: 0.5s;
   :hover {
     // transition: 10s;
-    width: 36%;
+    width: 32%;
     background: none;
   }
 `;

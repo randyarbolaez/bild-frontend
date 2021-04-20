@@ -26,20 +26,14 @@ let Fieldset = styled.fieldset`
   width: 30vw;
   background: #fe5f55;
   margin: 0;
-  padding: 5vh 0;
+  padding-top: 5vh;
   border-top-right-radius: 5%;
   border-bottom-right-radius: 5%;
-`;
-
-let ErrorText = styled.p`
-  color: #fffff4;
-  font-size: 1.4vw;
 `;
 
 let Title = styled.h2`
   text-align: center;
   font-style: italic;
-  font-variant: small-caps;
   margin-bottom: 0.6vw;
   font-family: "Montserrat", sans-serif;
   color: #fffff4;
@@ -48,46 +42,56 @@ let Title = styled.h2`
 `;
 
 let Input = styled.input`
-  margin-bottom: 1vw;
-  background: #fffff4;
-  border-radius: 20px;
-  text-align: center;
+  margin-bottom: 2vh;
+  background-image: linear-gradient(to bottom, #fe5f55, #e4766f);
+  border-radius: 0.4vw;
   border: none;
-  font-size: 2vw;
-  color: #fe5f55;
+  border: 0.2vw solid #fea7a1;
+  font-size: 1.2vw;
+  color: #ede8e4;
   outline: none;
   padding: 10px 5px;
+  width: 16vw;
+  transition: 0.3s;
+  :hover {
+    transition: 0.3s;
+    border-color: #cdcdcd;
+  }
   ::placeholder {
-    color: #fe5f55;
+    color: #ede8e4;
   }
 `;
 
 let ButtonDiv = styled.div`
-  text-align: center;
+  text-align: left;
+  padding-bottom: 4vh;
+  padding-top: 2vh;
 `;
 
 let InputButton = styled.input`
+  background-color: #fffff4;
   cursor: pointer;
   outline: none;
   font-family: "Montserrat", sans-serif;
-  background-color: transparent;
-  color: #fffff4;
-  font-weight: bold;
-  font-size: 2.3vw;
-  font-variant: small-caps;
+  font-weight: 600;
+  font-size: 2vw;
   border: none;
+  font-weight: 600;
   padding: 10px 0;
   width: 12vw;
+  color: #fe5f55;
+  transition: 0.9;
+  border-top-right-radius: 0.4vw;
+  border-bottom-right-radius: 0.4vw;
   :disabled {
     color: #d3d3d3;
     cursor: default;
   }
   :hover {
-    background-color: #fffff4;
+    transition: 0.9;
     color: #fe5f55;
-    border-radius: 16px;
     :disabled {
-      background: none;
+      background: #fffff4;
       color: #d3d3d3;
     }
   }
@@ -97,6 +101,8 @@ const Signin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorTimer, setErrorTimer] = useState();
+  const [errorEmail, setErrorEmail] = useState("");
+  const [errorPassword, setErrorPassword] = useState("");
 
   const emailRegex = /\S+@\S+\.\S+/;
 
@@ -123,18 +129,26 @@ const Signin = () => {
                 console.log("Error[Signin.js]: ", error);
                 setErrorTimer(true);
                 setTimeout(() => {
+                  setErrorEmail(false);
+                  setErrorPassword(false);
                   setErrorTimer(false);
                 }, 1000);
+                if (error.toString().split(":")[2].includes("email")) {
+                  setErrorEmail(true);
+                } else {
+                  setErrorPassword(true);
+                }
               }
             }}
           >
-            <Fieldset disabled={loading}>
-              {error && errorTimer && (
-                <ErrorText>{error.toString().split(":")[2]}</ErrorText>
-              )}
+            <Fieldset disabled={loading || errorTimer}>
               <Title>Sign In</Title>
               <label htmlFor="email">
                 <Input
+                  style={{
+                    borderColor:
+                      error && errorTimer && errorEmail ? "#ff0f0f" : "",
+                  }}
                   required
                   type="email"
                   name="email"
@@ -148,6 +162,10 @@ const Signin = () => {
               {emailRegex.test(email) && (
                 <label htmlFor="password">
                   <Input
+                    style={{
+                      borderColor:
+                        error && errorTimer && errorPassword ? "#ff0f0f" : "",
+                    }}
                     required
                     type="password"
                     name="password"
@@ -161,7 +179,7 @@ const Signin = () => {
               )}
               <ButtonDiv>
                 <InputButton
-                  disabled={!password}
+                  disabled={!password || errorTimer}
                   type="submit"
                   value="Sign In"
                 />
