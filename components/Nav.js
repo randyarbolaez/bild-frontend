@@ -8,11 +8,16 @@ import Signout from "./Signout";
 import CreatePost from "./CreatePost";
 
 const Container = styled.div`
+  height: 100vh;
   display: flex;
   justify-content: space-around;
+  // justify-content: space-between;
+  flex-direction: column;
   font-family: "Julius Sans One", sans-serif;
   align-items: center;
-  margin: 0 15%;
+  padding: 10vh 0;
+  // background: black;
+  width: 25vw;
 `;
 
 const TitleContainer = styled.h1`
@@ -105,9 +110,8 @@ const Nav = () => {
               </Link>
             )}
             {user && (
-              <div>
+              <>
                 <Button onClick={() => setOpenModal(true)}>Create Post</Button>
-
                 <Modal
                   isOpen={openModal}
                   // onAfterOpen={afterOpenModal}
@@ -119,7 +123,7 @@ const Nav = () => {
                   <Button onClick={() => setOpenModal(false)}>close</Button>
                 </Modal>
                 <Signout />
-              </div>
+              </>
             )}
           </Container>
         );
@@ -129,3 +133,16 @@ const Nav = () => {
 };
 
 export default Nav;
+
+// {
+//   <Modal
+//   isOpen={openModal}
+//   // onAfterOpen={afterOpenModal}
+//   ariaHideApp={false}
+//   onRequestClose={() => setOpenModal(false)}
+//   style={customStyles}
+// >
+//   <CreatePost sendData={() => getDatafromChild} />
+//   <Button onClick={() => setOpenModal(false)}>close</Button>
+// </Modal>;
+// }

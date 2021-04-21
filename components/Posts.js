@@ -40,6 +40,7 @@ const Container = styled.div`
   flex-wrap: wrap;
   justify-content: space-evenly;
   align-content: space-between;
+  flex-grow: 3;
 `;
 
 const Posts = () => {

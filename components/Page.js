@@ -2,6 +2,7 @@ import React from "react";
 import styled, { ThemeProvider, createGlobalStyle } from "styled-components";
 import Nav from "./Nav";
 import Meta from "./Meta";
+import { Container } from "next/app";
 
 const GlobalStyle = createGlobalStyle`
   html{
@@ -35,7 +36,6 @@ const Page = (props) => {
     <div>
       <GlobalStyle />
       <Meta />
-      <Nav />
       {props.children}
     </div>
   );

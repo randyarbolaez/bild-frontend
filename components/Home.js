@@ -4,6 +4,11 @@ import styled from "styled-components";
 
 import User from "./User";
 import Posts from "./Posts";
+import Nav from "./Nav";
+
+const Wrapper = styled.div`
+  display: flex;
+`;
 
 const Home = () => {
   let user = null;
@@ -23,9 +28,10 @@ const Home = () => {
                 <p>Loading</p>
               </div>
             )}
-            <div>
+            <Wrapper>
+              <Nav />
               <Posts />
-            </div>
+            </Wrapper>
           </div>
         );
       }}

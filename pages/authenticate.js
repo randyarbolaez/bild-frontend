@@ -9,7 +9,8 @@ import User from "../components/User";
 let Container = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 5vh;
+  align-items: center;
+  height: 100vh;
 `;
 
 let WrapperAuth = styled.div`
@@ -143,7 +144,7 @@ export default function authenticate() {
                 )}
               </WrapperAuth>
             ) : (
-              <Title style={{ color: "#fffff4" }}>Redirecting...</Title>
+              <Title style={{ color: "#fffff4" }}>Already signed in...</Title>
             )}
           </Container>
         );
