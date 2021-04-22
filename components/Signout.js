@@ -22,7 +22,7 @@ const Button = styled.button`
   outline: none;
   :hover {
     color: #66798c;
-    font-size: 2.5vw;
+    font-size: 2.3vw;
     transition: 0.5s;
     font-weight: bold;
     cursor: pointer;

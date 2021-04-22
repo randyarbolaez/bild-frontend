@@ -6,10 +6,6 @@ import User from "./User";
 import Posts from "./Posts";
 import Nav from "./Nav";
 
-const Wrapper = styled.div`
-  display: flex;
-`;
-
 const Home = () => {
   let user = null;
   return (
@@ -23,15 +19,15 @@ const Home = () => {
 
         return (
           <div>
-            {loading && (
-              <div>
-                <p>Loading</p>
-              </div>
-            )}
-            <Wrapper>
+            <div>
               <Nav />
+              {loading && (
+                <div>
+                  <h1>Loading</h1>
+                </div>
+              )}
               <Posts />
-            </Wrapper>
+            </div>
           </div>
         );
       }}

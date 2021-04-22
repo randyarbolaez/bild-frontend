@@ -6,8 +6,12 @@ const CURRENT_USER_QUERY = gql`
   query {
     user {
       id
+      name
       email
       password
+      profile {
+        profilePicture
+      }
     }
   }
 `;

@@ -8,16 +8,33 @@ import Signout from "./Signout";
 import CreatePost from "./CreatePost";
 
 const Container = styled.div`
-  height: 100vh;
+  // height: 100vh;
   display: flex;
   justify-content: space-around;
   // justify-content: space-between;
-  flex-direction: column;
+  // flex-direction: column;
   font-family: "Julius Sans One", sans-serif;
   align-items: center;
-  padding: 10vh 0;
+  // padding: 10vh 0;
   // background: black;
-  width: 25vw;
+  // width: 25vw;
+  width: 100vw;
+`;
+
+const Wrapper = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const UserName = styled.h1`
+  color: #66798c;
+  font-size: 1.6vw;
+  :hover {
+    span {
+      color: #e9ecef;
+    }
+    cursor: pointer;
+  }
 `;
 
 const TitleContainer = styled.h1`
@@ -58,7 +75,7 @@ const Button = styled.button`
   outline: none;
   :hover {
     color: #66798c;
-    font-size: 2.5vw;
+    font-size: 2.3vw;
     transition: 0.5s;
     font-weight: bold;
     cursor: pointer;
@@ -94,6 +111,7 @@ const Nav = () => {
           null;
         } else {
           user = data.user;
+          console.log(user, " | USER");
         }
         return (
           <Container>
@@ -110,7 +128,7 @@ const Nav = () => {
               </Link>
             )}
             {user && (
-              <>
+              <Wrapper>
                 <Button onClick={() => setOpenModal(true)}>Create Post</Button>
                 <Modal
                   isOpen={openModal}
@@ -123,7 +141,25 @@ const Nav = () => {
                   <Button onClick={() => setOpenModal(false)}>close</Button>
                 </Modal>
                 <Signout />
-              </>
+                <Link
+                  href={{
+                    pathname: "user-profile",
+                    query: { id: user.id },
+                  }}
+                  as={{
+                    pathname: "user-profile",
+                    query: { id: user.id },
+                  }}
+                >
+                  <a>
+                    <UserName>
+                      <span>"</span>
+                      {user.name}
+                      <span>"</span>
+                    </UserName>
+                  </a>
+                </Link>
+              </Wrapper>
             )}
           </Container>
         );

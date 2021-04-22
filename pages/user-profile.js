@@ -3,16 +3,12 @@ import styled from "styled-components";
 import Profile from "../components/Profile";
 import Nav from "../components/Nav";
 
-const Wrapper = styled.div`
-  display: flex;
-`;
-
 const userProfile = (props) => {
   return (
-    <Wrapper>
+    <div>
       <Nav />
       <Profile id={props.id} />
-    </Wrapper>
+    </div>
   );
 };
 
