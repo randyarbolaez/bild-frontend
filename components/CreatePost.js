@@ -129,6 +129,7 @@ const CreatePost = (props) => {
                 setCaption("");
                 setPicture("");
                 setPictureLoading(!pictureLoading);
+                router.push("/", "/");
               } catch (error) {
                 console.log("Error[CreatePost]: ", error);
               }
@@ -158,7 +159,7 @@ const CreatePost = (props) => {
                 disabled={!pictureLoading}
                 type="submit"
                 value="Create Post"
-                onClick={props.sendData()}
+                // onClick={props.sendData()}
               />
             </ButtonDiv>
           </form>
