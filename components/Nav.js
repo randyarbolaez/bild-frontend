@@ -6,7 +6,7 @@ import User from "./User";
 import Signout from "./Signout";
 
 const Container = styled.div`
-  // height: 100vh;
+  height: 10vh;
   display: flex;
   justify-content: space-around;
   // justify-content: space-between;

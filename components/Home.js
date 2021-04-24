@@ -6,6 +6,14 @@ import User from "./User";
 import Posts from "./Posts";
 import Nav from "./Nav";
 
+let Title = styled.h2`
+  margin-bottom: 0.6vw;
+  font-family: "Montserrat", sans-serif;
+  color: #fffff4;
+  font-size: 5vw;
+  margin-top: 0;
+`;
+
 const Home = () => {
   let user = null;
   return (
@@ -23,7 +31,7 @@ const Home = () => {
               <Nav />
               {loading && (
                 <div>
-                  <h1>Loading</h1>
+                  <Title>Loading</Title>
                 </div>
               )}
               <Posts />
