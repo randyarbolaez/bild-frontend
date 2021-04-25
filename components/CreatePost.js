@@ -24,6 +24,7 @@ let Form = styled.form`
   justify-content: center;
   flex-direction: column;
   height: 90vh;
+  height: 100vh;
   width: 50%;
 `;
 
@@ -203,7 +204,7 @@ const CreatePost = (props) => {
                       )}
                       <ButtonDiv>
                         <InputButton
-                          disabled={!pictureLoading}
+                          disabled={!pictureLoading || !caption}
                           type="submit"
                           value="Create Post"
                         />

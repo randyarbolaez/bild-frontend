@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import styled from "styled-components";
 
@@ -62,6 +62,16 @@ const Button = styled.button`
 
 const Nav = () => {
   let user = null;
+  let [navInfoShown, setNavInfoShown] = useState(false);
+  let [url, setUrl] = useState("");
+
+  useEffect(() => {
+    setUrl(
+      window.location.href.split("/")[
+        window.location.href.split("/").length - 1
+      ]
+    );
+  }, [url]);
 
   const customStyles = {
     content: {
@@ -83,51 +93,85 @@ const Nav = () => {
           user = data.user;
         }
         return (
-          <Container>
-            <Link href="/" as={"/"}>
-              <a>
-                <TitleContainer>Bild</TitleContainer>
-              </a>
-            </Link>
-            {!user && (
-              <Link href="/authenticate" as={"/authenticate"}>
-                <a>
-                  <Button>Sign Up/In</Button>
-                </a>
-              </Link>
-            )}
-            {user && (
-              <Wrapper>
-                <Link
-                  href={{
-                    pathname: "create",
-                  }}
-                >
+          <Container
+            style={{
+              backgroundColor: navInfoShown ? null : "purple",
+              height: navInfoShown ? null : "10vh",
+              width: navInfoShown ? null : "10%",
+              position:
+                navInfoShown && url !== "authenticate" ? null : "absolute",
+              // position: navInfoShown ? "absolute" : "absolute",
+              bottom: navInfoShown ? null : "0px",
+              right: navInfoShown ? null : "0px",
+              // position: navInfoShown ? null : "absolute",
+            }}
+          >
+            <button
+              onClick={() => {
+                // setUrl(
+                //   window.location.href.split("/")[
+                //     window.location.href.split("/").length - 1
+                //   ]
+                // );
+                console.log(url);
+                setNavInfoShown(!navInfoShown);
+                console.log(
+                  navInfoShown || url == "authenticate"
+                    ? console.log(null, "WHA")
+                    : console.log("absolute")
+                );
+              }}
+            >
+              HELO
+            </button>
+            {navInfoShown ? (
+              <>
+                <Link href="/" as={"/"}>
                   <a>
-                    <Button>Create Post</Button>
+                    <TitleContainer>Bild</TitleContainer>
                   </a>
                 </Link>
-                <Signout />
-                <Link
-                  href={{
-                    pathname: "user-profile",
-                    query: { id: user.id },
-                  }}
-                  as={{
-                    pathname: "user-profile",
-                    query: { id: user.id },
-                  }}
-                >
-                  <a>
-                    <UserName>
-                      <span>"</span>
-                      {user.name}
-                      <span>"</span>
-                    </UserName>
-                  </a>
-                </Link>
-              </Wrapper>
-            )}
+                {!user && (
+                  <Link href="/authenticate" as={"/authenticate"}>
+                    <a>
+                      <Button>Sign Up/In</Button>
+                    </a>
+                  </Link>
+                )}
+                {user && (
+                  <Wrapper>
+                    <Link
+                      href={{
+                        pathname: "create",
+                      }}
+                    >
+                      <a>
+                        <Button>Create Post</Button>
+                      </a>
+                    </Link>
+                    <Signout />
+                    <Link
+                      href={{
+                        pathname: "user-profile",
+                        query: { id: user.id },
+                      }}
+                      as={{
+                        pathname: "user-profile",
+                        query: { id: user.id },
+                      }}
+                    >
+                      <a>
+                        <UserName>
+                          <span>"</span>
+                          {user.name}
+                          <span>"</span>
+                        </UserName>
+                      </a>
+                    </Link>
+                  </Wrapper>
+                )}
+              </>
+            ) : null}
           </Container>
         );
       }}
@@ -136,3 +180,64 @@ const Nav = () => {
 };
 
 export default Nav;
+
+// return (
+//   <User>
+//     {({ data, loading }) => {
+//       if (loading) {
+//         null;
+//       } else {
+//         user = data.user;
+//       }
+//       return (
+//         <Container>
+//           <button onClick={() => setShowNav(!showNav)}>HELO</button>
+//           <Link href="/" as={"/"}>
+//             <a>
+//               <TitleContainer>Bild</TitleContainer>
+//             </a>
+//           </Link>
+//           {!user && (
+//             <Link href="/authenticate" as={"/authenticate"}>
+//               <a>
+//                 <Button>Sign Up/In</Button>
+//               </a>
+//             </Link>
+//           )}
+//           {user && (
+//             <Wrapper>
+//               <Link
+//                 href={{
+//                   pathname: "create",
+//                 }}
+//               >
+//                 <a>
+//                   <Button>Create Post</Button>
+//                 </a>
+//               </Link>
+//               <Signout />
+//               <Link
+//                 href={{
+//                   pathname: "user-profile",
+//                   query: { id: user.id },
+//                 }}
+//                 as={{
+//                   pathname: "user-profile",
+//                   query: { id: user.id },
+//                 }}
+//               >
+//                 <a>
+//                   <UserName>
+//                     <span>"</span>
+//                     {user.name}
+//                     <span>"</span>
+//                   </UserName>
+//                 </a>
+//               </Link>
+//             </Wrapper>
+//           )}
+//         </Container>
+//       );
+//     }}
+//   </User>
+// );

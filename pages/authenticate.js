@@ -5,6 +5,7 @@ import styled from "styled-components";
 import Signup from "../components/Signup";
 import Signin from "../components/Signin";
 import User from "../components/User";
+import Nav from "../components/Nav";
 
 let Container = styled.div`
   display: flex;
@@ -89,64 +90,67 @@ export default function authenticate() {
           user = data.user;
         }
         return (
-          <Container>
-            {!user ? (
-              <WrapperAuth>
-                {isSignUp ? (
-                  <Signup />
-                ) : (
-                  <WrapperSwitch
-                    style={{
-                      backgroundColor: "#fffff4",
-                      borderTopLeftRadius: "5%",
-                      borderBottomLeftRadius: "5%",
-                    }}
-                  >
-                    <Title style={{ color: "#fe5f55" }}>Sign Up!</Title>
-                    <SubTitle style={{ color: "#fe5f55" }}>
-                      If you don't already have an account please sign up.
-                    </SubTitle>
-                    <InputButton
-                      style={{
-                        backgroundColor: "#fe5f55",
-                        color: "#fffff4",
-                      }}
-                      onClick={() => setIsSignUp(!isSignUp)}
-                      type="button"
-                      value="Sign Up"
-                    />
-                  </WrapperSwitch>
-                )}
-                {!isSignUp ? (
-                  <Signin />
-                ) : (
-                  <WrapperSwitch
-                    style={{
-                      backgroundColor: "#fe5f55",
-                      borderTopRightRadius: "5%",
-                      borderBottomRightRadius: "5%",
-                    }}
-                  >
-                    <Title style={{ color: "#fffff4" }}>Welcome Back!</Title>
-                    <SubTitle style={{ color: "#fffff4" }}>
-                      If you already have an account please sign in.
-                    </SubTitle>
-                    <InputButton
+          <>
+            <Nav />
+            <Container>
+              {!user ? (
+                <WrapperAuth>
+                  {isSignUp ? (
+                    <Signup />
+                  ) : (
+                    <WrapperSwitch
                       style={{
                         backgroundColor: "#fffff4",
-                        color: "#fe5f55",
+                        borderTopLeftRadius: "5%",
+                        borderBottomLeftRadius: "5%",
                       }}
-                      onClick={() => setIsSignUp(!isSignUp)}
-                      type="button"
-                      value="Sign In"
-                    />
-                  </WrapperSwitch>
-                )}
-              </WrapperAuth>
-            ) : (
-              <Title style={{ color: "#fffff4" }}>Already signed in...</Title>
-            )}
-          </Container>
+                    >
+                      <Title style={{ color: "#fe5f55" }}>Sign Up!</Title>
+                      <SubTitle style={{ color: "#fe5f55" }}>
+                        If you don't already have an account please sign up.
+                      </SubTitle>
+                      <InputButton
+                        style={{
+                          backgroundColor: "#fe5f55",
+                          color: "#fffff4",
+                        }}
+                        onClick={() => setIsSignUp(!isSignUp)}
+                        type="button"
+                        value="Sign Up"
+                      />
+                    </WrapperSwitch>
+                  )}
+                  {!isSignUp ? (
+                    <Signin />
+                  ) : (
+                    <WrapperSwitch
+                      style={{
+                        backgroundColor: "#fe5f55",
+                        borderTopRightRadius: "5%",
+                        borderBottomRightRadius: "5%",
+                      }}
+                    >
+                      <Title style={{ color: "#fffff4" }}>Welcome Back!</Title>
+                      <SubTitle style={{ color: "#fffff4" }}>
+                        If you already have an account please sign in.
+                      </SubTitle>
+                      <InputButton
+                        style={{
+                          backgroundColor: "#fffff4",
+                          color: "#fe5f55",
+                        }}
+                        onClick={() => setIsSignUp(!isSignUp)}
+                        type="button"
+                        value="Sign In"
+                      />
+                    </WrapperSwitch>
+                  )}
+                </WrapperAuth>
+              ) : (
+                <Title style={{ color: "#fffff4" }}>Already signed in...</Title>
+              )}
+            </Container>
+          </>
         );
       }}
     </User>
