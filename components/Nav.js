@@ -100,30 +100,11 @@ const Nav = () => {
               width: navInfoShown ? null : "10%",
               position:
                 navInfoShown && url !== "authenticate" ? null : "absolute",
-              // position: navInfoShown ? "absolute" : "absolute",
               bottom: navInfoShown ? null : "0px",
               right: navInfoShown ? null : "0px",
-              // position: navInfoShown ? null : "absolute",
             }}
           >
-            <button
-              onClick={() => {
-                // setUrl(
-                //   window.location.href.split("/")[
-                //     window.location.href.split("/").length - 1
-                //   ]
-                // );
-                console.log(url);
-                setNavInfoShown(!navInfoShown);
-                console.log(
-                  navInfoShown || url == "authenticate"
-                    ? console.log(null, "WHA")
-                    : console.log("absolute")
-                );
-              }}
-            >
-              HELO
-            </button>
+            <button onClick={() => setNavInfoShown(!navInfoShown)}>HELO</button>
             {navInfoShown ? (
               <>
                 <Link href="/" as={"/"}>
