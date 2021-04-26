@@ -93,67 +93,82 @@ const Nav = () => {
           user = data.user;
         }
         return (
-          <Container
-            style={{
-              backgroundColor: navInfoShown ? null : "purple",
-              height: navInfoShown ? null : "10vh",
-              width: navInfoShown ? null : "10%",
-              position:
-                navInfoShown && url !== "authenticate" ? null : "absolute",
-              bottom: navInfoShown ? null : "0px",
-              right: navInfoShown ? null : "0px",
-            }}
-          >
-            <button onClick={() => setNavInfoShown(!navInfoShown)}>HELO</button>
-            {navInfoShown ? (
-              <>
-                <Link href="/" as={"/"}>
-                  <a>
-                    <TitleContainer>Bild</TitleContainer>
-                  </a>
-                </Link>
-                {!user && (
-                  <Link href="/authenticate" as={"/authenticate"}>
+          <>
+            <div
+              style={{
+                position: "fixed",
+                bottom: "20px",
+                right: "20px",
+                zIndex: 6,
+              }}
+            >
+              <button
+                onClick={() => {
+                  setNavInfoShown(!navInfoShown);
+                  if (!navInfoShown) {
+                    scroll(0, 0);
+                  }
+                }}
+              >
+                SHOW NAV
+              </button>
+            </div>
+            <Container
+              style={{
+                position:
+                  navInfoShown && url !== "authenticate" ? null : "fixed",
+              }}
+            >
+              {navInfoShown ? (
+                <>
+                  <Link href="/" as={"/"}>
                     <a>
-                      <Button>Sign Up/In</Button>
+                      <TitleContainer>Bild</TitleContainer>
                     </a>
                   </Link>
-                )}
-                {user && (
-                  <Wrapper>
-                    <Link
-                      href={{
-                        pathname: "create",
-                      }}
-                    >
+                  {!user && (
+                    <Link href="/authenticate" as={"/authenticate"}>
                       <a>
-                        <Button>Create Post</Button>
+                        <Button>Sign Up/In</Button>
                       </a>
                     </Link>
-                    <Signout />
-                    <Link
-                      href={{
-                        pathname: "user-profile",
-                        query: { id: user.id },
-                      }}
-                      as={{
-                        pathname: "user-profile",
-                        query: { id: user.id },
-                      }}
-                    >
-                      <a>
-                        <UserName>
-                          <span>"</span>
-                          {user.name}
-                          <span>"</span>
-                        </UserName>
-                      </a>
-                    </Link>
-                  </Wrapper>
-                )}
-              </>
-            ) : null}
-          </Container>
+                  )}
+                  {user && (
+                    <Wrapper>
+                      <Link
+                        href={{
+                          pathname: "create",
+                        }}
+                      >
+                        <a>
+                          <Button>Create Post</Button>
+                        </a>
+                      </Link>
+                      <Signout />
+                      <Link
+                        href={{
+                          pathname: "user-profile",
+                          query: { id: user.id },
+                        }}
+                        as={{
+                          pathname: "user-profile",
+                          query: { id: user.id },
+                        }}
+                      >
+                        <a>
+                          <UserName>
+                            <span>"</span>
+                            {user.name}
+                            <span>"</span>
+                          </UserName>
+                        </a>
+                      </Link>
+                    </Wrapper>
+                  )}
+                </>
+              ) : null}
+            </Container>
+          </>
         );
       }}
     </User>

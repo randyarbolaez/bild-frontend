@@ -23,8 +23,7 @@ let Form = styled.form`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  height: 90vh;
-  height: 100vh;
+  height: 100%;
   width: 50%;
 `;
 
