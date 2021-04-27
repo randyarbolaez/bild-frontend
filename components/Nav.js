@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import styled from "styled-components";
+import { RiLayoutTop2Fill, RiLayoutTop2Line } from "react-icons/ri";
 
 import User from "./User";
 import Signout from "./Signout";
@@ -22,6 +23,14 @@ const Container = styled.div`
 const Wrapper = styled.div`
   display: flex;
   align-items: center;
+`;
+
+const ShowNavButton = styled.button`
+  background: transparent;
+  border: none;
+  :hover {
+    cursor: pointer;
+  }
 `;
 
 const UserName = styled.h1`
@@ -102,7 +111,7 @@ const Nav = () => {
                 zIndex: 6,
               }}
             >
-              <button
+              <ShowNavButton
                 onClick={() => {
                   setNavInfoShown(!navInfoShown);
                   if (!navInfoShown) {
@@ -110,8 +119,12 @@ const Nav = () => {
                   }
                 }}
               >
-                SHOW NAV
-              </button>
+                {navInfoShown ? (
+                  <RiLayoutTop2Line size={"3vw"} color={"#fe5f55"} />
+                ) : (
+                  <RiLayoutTop2Fill size={"3vw"} color={"#fe5f55"} />
+                )}
+              </ShowNavButton>
             </div>
             <Container
               style={{
