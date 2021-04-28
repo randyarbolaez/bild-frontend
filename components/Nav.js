@@ -1,22 +1,24 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import styled from "styled-components";
-import { RiLayoutTop2Fill, RiLayoutTop2Line } from "react-icons/ri";
+import {
+  RiLayoutTop2Fill,
+  RiLayoutTop2Line,
+  RiCamera2Fill,
+  RiCamera2Line,
+} from "react-icons/ri";
 
 import User from "./User";
 import Signout from "./Signout";
+// import BildLogo from "../lib/bild-logo";
 
 const Container = styled.div`
-  height: 10vh;
+  height: 7vh;
+  // padding: 2vw 0;
   display: flex;
   justify-content: space-around;
-  // justify-content: space-between;
-  // flex-direction: column;
   font-family: "Julius Sans One", sans-serif;
   align-items: center;
-  // padding: 10vh 0;
-  // background: black;
-  // width: 25vw;
   width: 100vw;
 `;
 
@@ -45,11 +47,15 @@ const UserName = styled.h1`
 `;
 
 const TitleContainer = styled.h1`
-  color: #fe5f55;
-  font-size: 4.5vw;
+  color: #e9ecef;
+  font-size: 3vw;
+  font-size: 2.5vw;
   margin: 0;
+  font-weight: 600;
+  transition: 0.5s;
   :hover {
-    color: #fe2f22;
+    transition: 0.5s;
+    color: #66798c;
   }
 `;
 
@@ -135,7 +141,8 @@ const Nav = () => {
               {navInfoShown ? (
                 <>
                   <Link href="/" as={"/"}>
-                    <a>
+                    <a style={{ display: "flex", alignItems: "center" }}>
+                      <RiCamera2Fill size={"2vw"} color={"#fe5f55"} />
                       <TitleContainer>Bild</TitleContainer>
                     </a>
                   </Link>
