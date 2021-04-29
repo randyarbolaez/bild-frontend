@@ -10,11 +10,9 @@ import {
 
 import User from "./User";
 import Signout from "./Signout";
-// import BildLogo from "../lib/bild-logo";
 
 const Container = styled.div`
   height: 7vh;
-  // padding: 2vw 0;
   display: flex;
   justify-content: space-around;
   font-family: "Julius Sans One", sans-serif;
@@ -196,64 +194,3 @@ const Nav = () => {
 };
 
 export default Nav;
-
-// return (
-//   <User>
-//     {({ data, loading }) => {
-//       if (loading) {
-//         null;
-//       } else {
-//         user = data.user;
-//       }
-//       return (
-//         <Container>
-//           <button onClick={() => setShowNav(!showNav)}>HELO</button>
-//           <Link href="/" as={"/"}>
-//             <a>
-//               <TitleContainer>Bild</TitleContainer>
-//             </a>
-//           </Link>
-//           {!user && (
-//             <Link href="/authenticate" as={"/authenticate"}>
-//               <a>
-//                 <Button>Sign Up/In</Button>
-//               </a>
-//             </Link>
-//           )}
-//           {user && (
-//             <Wrapper>
-//               <Link
-//                 href={{
-//                   pathname: "create",
-//                 }}
-//               >
-//                 <a>
-//                   <Button>Create Post</Button>
-//                 </a>
-//               </Link>
-//               <Signout />
-//               <Link
-//                 href={{
-//                   pathname: "user-profile",
-//                   query: { id: user.id },
-//                 }}
-//                 as={{
-//                   pathname: "user-profile",
-//                   query: { id: user.id },
-//                 }}
-//               >
-//                 <a>
-//                   <UserName>
-//                     <span>"</span>
-//                     {user.name}
-//                     <span>"</span>
-//                   </UserName>
-//                 </a>
-//               </Link>
-//             </Wrapper>
-//           )}
-//         </Container>
-//       );
-//     }}
-//   </User>
-// );
