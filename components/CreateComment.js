@@ -13,49 +13,44 @@ const CREATE_COMMENT_MUTATION = gql`
   }
 `;
 
-const Input = styled.input`
-  font-size: 0.9vmax;
+const CommentInput = styled.input`
+  font-size: 1vmax;
   border: none;
   width: 20vmax;
   height: 2vmax;
-  font-family: "Montserrat", sans-serif;
   outline: none;
-
   border-bottom: 0.4vw solid #fe5f55;
-  /* border-bottom-left-radius: 25px; */
-
   ::placeholder {
-    font-family: "Montserrat", sans-serif;
-    text-align: center;
+    font-weight: 400;
     font-size: 1vmax;
   }
 `;
 
-const InputButton = styled.input`
+const AddCommentButton = styled.input`
   color: #fe5f55;
-  font-size: 0.9vmax;
+  font-size: 1vmax;
+  font-weight: 700;
   width: 10vmax;
   height: 2vmax;
   border: none;
   background: none;
   outline: none;
-  transition: 0.8s;
-  border-bottom: 0.4vw solid #bcb8b1;
-  border-bottom-left-radius: 25px;
+  border-bottom: 0.4vw solid #fe5f55;
+  border-left: 0vw solid #fe5f55;
+  transition: border 0.4s ease-in-out;
   :disabled {
+    font-weight: 400;
     color: #d3d3d3;
+    border-bottom: 0.4vw solid #bcb8b1;
   }
   :hover {
-    font-size: 1.1vmax;
-    border-bottom: 0.4vw solid #fe5f55;
-    transition: 0.5s;
-    border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 25px;
+    border-left: 1.6vw solid #fe5f55;
+    cursor: pointer;
     :disabled {
-      font-size: 0.9vmax;
-      border-bottom: 0.4vw solid #bcb8b1;
-      border-bottom-left-radius: 0px;
-      border-bottom-right-radius: 0px;
+      font-size: 1vmax;
+      cursor: default;
+      border-left: none;
+      border-color: #bcb8b1;
     }
   }
 `;
@@ -83,7 +78,7 @@ const CreateComment = ({ post }) => {
               }
             }}
           >
-            <Input
+            <CommentInput
               aria-multiline
               maxLength={255}
               placeholder="Comment"
@@ -93,7 +88,7 @@ const CreateComment = ({ post }) => {
                 setContent(e.target.value);
               }}
             />
-            <InputButton
+            <AddCommentButton
               type="submit"
               value="Add Comment"
               disabled={!content}
