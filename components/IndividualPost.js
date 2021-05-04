@@ -1,5 +1,9 @@
 import React, { useState } from "react";
-import { FaRegCommentDots } from "react-icons/fa";
+import {
+  FaRegCommentDots,
+  FaWindowClose,
+  FaRegWindowClose,
+} from "react-icons/fa";
 import Modal from "react-modal";
 import Link from "next/link";
 import styled from "styled-components";
@@ -76,27 +80,17 @@ const Span = styled.span`
   }
 `;
 
-const Button = styled.button`
-  background: none;
-  border: none;
-  font-size: 1.6vw;
-  color: #e9ecef;
-  transition: 0.5s;
-  outline: none;
+const CloseButton = styled.span`
+  font-size: 1.8vw;
+  color: #fe5f55;
   :hover {
-    color: #fe5f55;
-    font-size: 3vw;
-    transition: 0.5s;
-    font-weight: bold;
-    border-left: 0.5vw solid #e9ecef;
-    border-right: 0.5vw solid #e9ecef;
-    border-bottom-left-radius: 25%;
-    border-top-right-radius: 25%;
+    cursor: pointer;
   }
 `;
 
 const IndividualPost = ({ post }) => {
   const [openModal, setOpenModal] = useState(false);
+  const [windowClose, setWindowClose] = useState(false);
   let user = null;
 
   const customStyles = {
@@ -171,7 +165,16 @@ const IndividualPost = ({ post }) => {
                 style={customStyles}
               >
                 <Comments comments={post.comments} post={post} />
-                <Button onClick={() => setOpenModal(false)}>close</Button>
+                <CloseButton
+                  onMouseEnter={() => setWindowClose(!windowClose)}
+                  onMouseLeave={() => setWindowClose(!windowClose)}
+                >
+                  {windowClose ? (
+                    <FaRegWindowClose onClick={() => setOpenModal(false)} />
+                  ) : (
+                    <FaWindowClose onClick={() => setOpenModal(false)} />
+                  )}
+                </CloseButton>
               </Modal>
             </Wrapper>
           </Container>

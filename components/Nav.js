@@ -46,8 +46,6 @@ const UserName = styled.h1`
 
 const TitleContainer = styled.h1`
   color: #e9ecef;
-  font-size: 3vw;
-  font-size: 2.5vw;
   margin: 0;
   font-weight: 600;
   transition: 0.5s;
@@ -140,7 +138,7 @@ const Nav = () => {
                 <>
                   <Link href="/" as={"/"}>
                     <a style={{ display: "flex", alignItems: "center" }}>
-                      <RiCamera2Fill size={"1.5vw"} color={"#fe5f55"} />
+                      {/* <RiCamera2Fill size={"1.5vw"} color={"#fe5f55"} /> */}
                       <TitleContainer>Bild</TitleContainer>
                     </a>
                   </Link>
