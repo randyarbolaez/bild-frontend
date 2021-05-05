@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 import DeleteComment from "./DeleteComment";
@@ -10,7 +10,7 @@ const Container = styled.div`
   width: 50vw;
   align-items: center;
   background: #f0efeb;
-  border-left: 0.4vw solid #fe5f55;
+  // border-left: 0.4vw solid #fe5f55;
   border-right: 0.4vw solid #fe5f55;
   margin: 5px 0;
 `;
@@ -54,6 +54,7 @@ let Time = styled.p`
 `;
 
 const IndividualComment = ({ comment }) => {
+  const [userHoverOverComment, setUserHoverOverComment] = useState(false);
   let user = null;
 
   const months = [
@@ -81,7 +82,14 @@ const IndividualComment = ({ comment }) => {
         }
         return (
           <div style={{ display: "flex" }}>
-            <Container>
+            <Container
+              style={{
+                borderRight:
+                  (user && user.id) !== comment.user.id ? "0.5vw" : null,
+              }}
+              onMouseEnter={() => setUserHoverOverComment(true)}
+              onMouseLeave={() => setUserHoverOverComment(false)}
+            >
               <UserInformationWrapper>
                 <img
                   style={{
@@ -91,6 +99,7 @@ const IndividualComment = ({ comment }) => {
                     border: "2px solid #fe5f55",
                   }}
                   src={comment.user.profile.profilePicture}
+                  alt={comment.user.name}
                 />
                 <UserName>{comment.user.name}</UserName>
               </UserInformationWrapper>
@@ -104,10 +113,10 @@ const IndividualComment = ({ comment }) => {
                   ).getFullYear()}`}
                 </Time>
               </TimeContainer>
+              {userHoverOverComment && (user && user.id) == comment.user.id && (
+                <DeleteComment commentId={comment.id} />
+              )}
             </Container>
-            {(user && user.id) == comment.user.id && (
-              <DeleteComment commentId={comment.id} />
-            )}
           </div>
         );
       }}
@@ -116,3 +125,46 @@ const IndividualComment = ({ comment }) => {
 };
 
 export default IndividualComment;
+
+// return (
+//   <User>
+//     {({ data, loading }) => {
+//       if (loading) {
+//         return null;
+//       } else {
+//         user = data.user;
+//       }
+//       return (
+//         <div style={{ display: "flex" }}>
+//           <Container>
+//             <UserInformationWrapper>
+//               <img
+//                 style={{
+//                   width: "2vmax",
+//                   borderRadius: "50%",
+//                   height: "2vmax",
+//                   border: "2px solid #fe5f55",
+//                 }}
+//                 src={comment.user.profile.profilePicture}
+//               />
+//               <UserName>{comment.user.name}</UserName>
+//             </UserInformationWrapper>
+//             <Content>{comment.content}</Content>
+//             <TimeContainer>
+//               <Time>
+//                 {`${
+//                   months[new Date(comment.createdAt).getMonth()]
+//                 } ${new Date(comment.createdAt).getDate()}, ${new Date(
+//                   comment.createdAt
+//                 ).getFullYear()}`}
+//               </Time>
+//             </TimeContainer>
+//           </Container>
+//           {(user && user.id) == comment.user.id && (
+//             <DeleteComment commentId={comment.id} />
+//           )}
+//         </div>
+//       );
+//     }}
+//   </User>
+// );
