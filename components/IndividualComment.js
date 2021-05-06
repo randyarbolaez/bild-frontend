@@ -13,6 +13,7 @@ const Container = styled.div`
   // border-left: 0.4vw solid #fe5f55;
   border-right: 0.4vw solid #fe5f55;
   margin: 5px 0;
+  margin-top: 0;
 `;
 
 const UserInformationWrapper = styled.div`
@@ -81,14 +82,18 @@ const IndividualComment = ({ comment }) => {
           user = data.user;
         }
         return (
-          <div style={{ display: "flex" }}>
+          <div
+            onMouseEnter={() => setUserHoverOverComment(true)}
+            onMouseLeave={() => setUserHoverOverComment(false)}
+          >
+            {userHoverOverComment && (user && user.id) == comment.user.id && (
+              <DeleteComment commentId={comment.id} />
+            )}
             <Container
               style={{
                 borderRight:
                   (user && user.id) !== comment.user.id ? "0.5vw" : null,
               }}
-              onMouseEnter={() => setUserHoverOverComment(true)}
-              onMouseLeave={() => setUserHoverOverComment(false)}
             >
               <UserInformationWrapper>
                 <img
@@ -113,9 +118,6 @@ const IndividualComment = ({ comment }) => {
                   ).getFullYear()}`}
                 </Time>
               </TimeContainer>
-              {userHoverOverComment && (user && user.id) == comment.user.id && (
-                <DeleteComment commentId={comment.id} />
-              )}
             </Container>
           </div>
         );
