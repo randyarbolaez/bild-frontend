@@ -5,53 +5,61 @@ import DeleteComment from "./DeleteComment";
 import User from "./User";
 
 const Container = styled.div`
-  display: flex;
+  // display: flex;
   justify-content: space-between;
-  width: 50vw;
+  border-radius: 0.4vw;
+  max-width: 20vw;
+  min-width: 20vw;
   align-items: center;
-  background: #f0efeb;
-  // border-left: 0.4vw solid #fe5f55;
-  border-right: 0.4vw solid #fe5f55;
+  // background: #f0efeb;
+  // background: red;
+  background: #437c90;
   margin: 5px 0;
+  border: none;
   margin-top: 0;
 `;
 
-const UserInformationWrapper = styled.div`
+const InformationWrapper = styled.div`
   display: flex;
-  justify-content: space-evenly;
   align-items: center;
-  background: #fe5f55;
+  border-bottom: 1px solid white;
+`;
 
-  border-top: 0.4vw solid #f0efeb;
-  border-bottom: 0.4vw solid #f0efeb;
-  width: 7vw;
-  text-align: center;
+const UserInformationContainer = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
 
 let UserName = styled.p`
-  margin-left: 5px;
-  font-size: 0.8vmax;
-  width: 7vw;
+  margin: 0 5px;
+  font-size: 1.1vmax;
+  max-width: 7vw;
+  font-weight: 700;
 `;
 
 let Content = styled.p`
   font-size: 1vmax;
-  margin: 0 2vw;
+  // margin: 0 2vw;
+  margin: 0;
+  color: #d3d3d3;
+  overflow-wrap: break-word;
+  max-width: 20vw;
+  max-height: 100%;
+  // background: purple;
+  text-align: justify;
+  text-align: start;
+  text-align: end;
+  text-align: center;
 `;
 
-let TimeContainer = styled.div`
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  background: #fe5f55;
-  border-top: 0.4vw solid #f0efeb;
-  border-bottom: 0.4vw solid #f0efeb;
-`;
+let TimeContainer = styled.div``;
 
 let Time = styled.p`
+  margin: 0;
+  margin-top: -1.5vh;
   font-size: 0.8vmax;
   text-align: center;
-  width: 7vw;
+  color: #a9a9a9;
 `;
 
 const IndividualComment = ({ comment }) => {
@@ -80,6 +88,7 @@ const IndividualComment = ({ comment }) => {
           return null;
         } else {
           user = data.user;
+          console.log(comment.user);
         }
         return (
           <div
@@ -89,13 +98,8 @@ const IndividualComment = ({ comment }) => {
             {userHoverOverComment && (user && user.id) == comment.user.id && (
               <DeleteComment commentId={comment.id} />
             )}
-            <Container
-              style={{
-                borderRight:
-                  (user && user.id) !== comment.user.id ? "0.5vw" : null,
-              }}
-            >
-              <UserInformationWrapper>
+            <Container>
+              <InformationWrapper>
                 <img
                   style={{
                     width: "2vmax",
@@ -106,18 +110,20 @@ const IndividualComment = ({ comment }) => {
                   src={comment.user.profile.profilePicture}
                   alt={comment.user.name}
                 />
-                <UserName>{comment.user.name}</UserName>
-              </UserInformationWrapper>
+                <UserInformationContainer>
+                  <UserName>{comment.user.name}</UserName>
+                  <TimeContainer>
+                    <Time>
+                      {`${
+                        months[new Date(comment.createdAt).getMonth()]
+                      } ${new Date(comment.createdAt).getDate()}, ${new Date(
+                        comment.createdAt
+                      ).getFullYear()}`}
+                    </Time>
+                  </TimeContainer>
+                </UserInformationContainer>
+              </InformationWrapper>
               <Content>{comment.content}</Content>
-              <TimeContainer>
-                <Time>
-                  {`${
-                    months[new Date(comment.createdAt).getMonth()]
-                  } ${new Date(comment.createdAt).getDate()}, ${new Date(
-                    comment.createdAt
-                  ).getFullYear()}`}
-                </Time>
-              </TimeContainer>
             </Container>
           </div>
         );

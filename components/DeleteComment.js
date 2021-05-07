@@ -17,16 +17,14 @@ const DELETE_COMMENT_MUTATION = gql`
 const Button = styled.button`
   font-weight: 600;
   display: flex;
-  // justify-content: center;
   background: none;
-  width: 50%;
   border: none;
   font-size: 1.3vw;
   color: #fe5f55;
   transition: 0.5s;
   outline: none;
   border-left: 0vw solid #fe5f55;
-  transition: border 0.4s ease-in-out;
+  transition: border 0.9s ease-in-out;
   :hover {
     border-left: 10vw solid #fe5f55;
     cursor: pointer;

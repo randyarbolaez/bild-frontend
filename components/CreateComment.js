@@ -80,8 +80,8 @@ const CreateComment = ({ post }) => {
           >
             <CommentInput
               aria-multiline
-              maxLength={255}
-              placeholder="Comment"
+              maxLength={140}
+              placeholder="Comment under 140 characters"
               type="text"
               value={content}
               onChange={(e) => {
