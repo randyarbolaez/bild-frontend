@@ -15,19 +15,24 @@ const DELETE_COMMENT_MUTATION = gql`
 `;
 
 const Button = styled.button`
+  display: flex;
+  justify-content: center;
+  width: 60%;
+  margin-left: 20%;
+  margin-right: 20%;
   font-weight: 600;
   display: flex;
-  background: none;
+  background: white;
   border: none;
   font-size: 1.3vw;
-  color: #fe5f55;
-  transition: 0.5s;
+  color: #ffd6d4;
   outline: none;
-  border-left: 0vw solid #fe5f55;
-  transition: border 0.9s ease-in-out;
+  transition: color 0.3s ease-in-out;
+  border-top-right-radius: 1vw;
+  border-top-left-radius: 1vw;
   :hover {
-    border-left: 10vw solid #fe5f55;
     cursor: pointer;
+    color: #fe5f55;
   }
 `;
 
@@ -61,18 +66,6 @@ const DeleteComment = ({ commentId }) => (
       >
         Delete
       </Button>
-      // <ButtonSpan
-      //   onClick={async (e) => {
-      //     e.preventDefault();
-      //     try {
-      //       await deleteOneComment();
-      //     } catch (error) {
-      //       console.log("Error[DeleteComment.js]: ", error);
-      //     }
-      //   }}
-      // >
-      //   <TiDelete />
-      // </ButtonSpan>
     )}
   </Mutation>
 );

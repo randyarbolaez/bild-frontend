@@ -5,15 +5,11 @@ import DeleteComment from "./DeleteComment";
 import User from "./User";
 
 const Container = styled.div`
-  // display: flex;
-  justify-content: space-between;
   border-radius: 0.4vw;
   max-width: 20vw;
   min-width: 20vw;
   align-items: center;
-  // background: #f0efeb;
-  // background: red;
-  background: #437c90;
+  background: #27a888;
   margin: 5px 0;
   border: none;
   margin-top: 0;
@@ -22,16 +18,19 @@ const Container = styled.div`
 const InformationWrapper = styled.div`
   display: flex;
   align-items: center;
-  border-bottom: 1px solid white;
+  border-bottom: 0.2vw solid white;
 `;
 
 const UserInformationContainer = styled.div`
   display: flex;
   flex-direction: column;
+  border-left: 0.2vw solid white;
+  margin: 0 0.5vw;
 `;
 
 let UserName = styled.p`
   margin: 0 5px;
+  color: #9dc5bb;
   font-size: 1.1vmax;
   max-width: 7vw;
   font-weight: 700;
@@ -39,16 +38,11 @@ let UserName = styled.p`
 
 let Content = styled.p`
   font-size: 1vmax;
-  // margin: 0 2vw;
   margin: 0;
   color: #d3d3d3;
   overflow-wrap: break-word;
   max-width: 20vw;
   max-height: 100%;
-  // background: purple;
-  text-align: justify;
-  text-align: start;
-  text-align: end;
   text-align: center;
 `;
 
@@ -59,7 +53,7 @@ let Time = styled.p`
   margin-top: -1.5vh;
   font-size: 0.8vmax;
   text-align: center;
-  color: #a9a9a9;
+  color: #566246;
 `;
 
 const IndividualComment = ({ comment }) => {
@@ -95,9 +89,6 @@ const IndividualComment = ({ comment }) => {
             onMouseEnter={() => setUserHoverOverComment(true)}
             onMouseLeave={() => setUserHoverOverComment(false)}
           >
-            {userHoverOverComment && (user && user.id) == comment.user.id && (
-              <DeleteComment commentId={comment.id} />
-            )}
             <Container>
               <InformationWrapper>
                 <img
@@ -106,6 +97,7 @@ const IndividualComment = ({ comment }) => {
                     borderRadius: "50%",
                     height: "2vmax",
                     border: "2px solid #fe5f55",
+                    marginLeft: "0.5vw",
                   }}
                   src={comment.user.profile.profilePicture}
                   alt={comment.user.name}
@@ -124,6 +116,9 @@ const IndividualComment = ({ comment }) => {
                 </UserInformationContainer>
               </InformationWrapper>
               <Content>{comment.content}</Content>
+              {userHoverOverComment && (user && user.id) == comment.user.id && (
+                <DeleteComment commentId={comment.id} />
+              )}
             </Container>
           </div>
         );
