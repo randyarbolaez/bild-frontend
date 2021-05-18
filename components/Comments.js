@@ -7,12 +7,16 @@ import User from "./User";
 
 const Container = styled.div`
   margin-top: 15px;
-  max-height: 90vh;
+  height: 70vh;
   width: 80vw;
   display: flex;
-  flex-direction: column;
+  // background: black;
   align-items: center;
   overflow-y: auto;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-content: space-between;
+  flex-grow: 1;
 `;
 
 const Comments = ({ comments, post }) => {
@@ -30,7 +34,7 @@ const Comments = ({ comments, post }) => {
             {comments.map((comment) => (
               <IndividualComment key={comment.id} comment={comment} />
             ))}
-            {user && <CreateComment post={post} />}
+            {/* {user && <CreateComment post={post} />} */}
           </Container>
         );
       }}

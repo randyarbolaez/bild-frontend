@@ -12,6 +12,8 @@ import DeletePost from "./DeletePost";
 import User from "./User";
 import Comments from "./Comments";
 
+import CreateComment from "./CreateComment";
+
 const Container = styled.div`
   background: #e9ecef;
   border-top: 0.5vw solid #e9ecef;
@@ -78,6 +80,11 @@ const Span = styled.span`
     transition: 0.5s;
     cursor: pointer;
   }
+`;
+
+const Footer = styled.div`
+  display: flex;
+  justify-content: space-around;
 `;
 
 const CloseButton = styled.span`
@@ -165,16 +172,19 @@ const IndividualPost = ({ post }) => {
                 style={customStyles}
               >
                 <Comments comments={post.comments} post={post} />
-                <CloseButton
-                  onMouseEnter={() => setWindowClose(!windowClose)}
-                  onMouseLeave={() => setWindowClose(!windowClose)}
-                >
-                  {windowClose ? (
-                    <FaRegWindowClose onClick={() => setOpenModal(false)} />
-                  ) : (
-                    <FaWindowClose onClick={() => setOpenModal(false)} />
-                  )}
-                </CloseButton>
+                <Footer>
+                  <CloseButton
+                    onMouseEnter={() => setWindowClose(!windowClose)}
+                    onMouseLeave={() => setWindowClose(!windowClose)}
+                  >
+                    {windowClose ? (
+                      <FaRegWindowClose onClick={() => setOpenModal(false)} />
+                    ) : (
+                      <FaWindowClose onClick={() => setOpenModal(false)} />
+                    )}
+                  </CloseButton>
+                  {user && <CreateComment post={post} />}
+                </Footer>
               </Modal>
             </Wrapper>
           </Container>

@@ -17,12 +17,14 @@ const DELETE_COMMENT_MUTATION = gql`
 const Button = styled.button`
   display: flex;
   justify-content: center;
-  width: 60%;
-  margin-left: 20%;
-  margin-right: 20%;
+  width: 100%;
+  // margin-left: 20%;
+  // margin-right: 20%;
+  margin: 1vh 0;
   font-weight: 600;
   display: flex;
-  background: white;
+  background: none;
+  // background: white;
   border: none;
   font-size: 1.3vw;
   color: #ffd6d4;
@@ -33,17 +35,6 @@ const Button = styled.button`
   :hover {
     cursor: pointer;
     color: #fe5f55;
-  }
-`;
-
-const ButtonSpan = styled.span`
-  display: flex;
-  background: yellow;
-  color: purple;
-  font-size: 2vw;
-  align-items: center;
-  :hover {
-    cursor: pointer;
   }
 `;
 
