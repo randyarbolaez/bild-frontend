@@ -37,10 +37,8 @@ const ALL_POSTS_QUERY = gql`
 
 const Container = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  align-content: space-between;
-  flex-grow: 3;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const Posts = () => {

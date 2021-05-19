@@ -16,7 +16,10 @@ const CREATE_POST_MUTATION = gql`
     }
   }
 `;
-
+let Container = styled.div`
+  display: flex;
+  height: 100%;
+`;
 let Form = styled.form`
   display: flex;
   background: #778798;
@@ -96,6 +99,7 @@ let InputButton = styled.input`
   width: 15vw;
   margin: 1vw 0;
   color: #66798c;
+  transition: color 0.4s ease-in-out;
   :disabled {
     color: #dde1e5;
     border: none;
@@ -159,56 +163,58 @@ const CreatePost = (props) => {
                 <>
                   {!user && <Title>Please sign in</Title>}
                   {user && (
-                    <Form
-                      action="post"
-                      onSubmit={async (e) => {
-                        e.preventDefault();
-                        try {
-                          await createPost();
-                          setCaption("");
-                          setPicture("");
-                          setPictureLoading(!pictureLoading);
-                          router.push("/", "/");
-                        } catch (error) {
-                          console.log("Error[CreatePost]: ", error);
-                        }
-                      }}
-                    >
-                      <Title>Create Post</Title>
-                      <PictureFile htmlFor="file">
-                        {fileName ? fileName.substring(0, 20) : "Add Picture"}
-                        <input
-                          maxLength={255}
-                          type="file"
-                          name="file"
-                          id="file"
-                          onChange={uploadFile}
+                    <Container>
+                      <Form
+                        action="post"
+                        onSubmit={async (e) => {
+                          e.preventDefault();
+                          try {
+                            await createPost();
+                            setCaption("");
+                            setPicture("");
+                            setPictureLoading(!pictureLoading);
+                            router.push("/", "/");
+                          } catch (error) {
+                            console.log("Error[CreatePost]: ", error);
+                          }
+                        }}
+                      >
+                        <Title>Create Post</Title>
+                        <PictureFile htmlFor="file">
+                          {fileName ? fileName.substring(0, 20) : "Add Picture"}
+                          <input
+                            maxLength={255}
+                            type="file"
+                            name="file"
+                            id="file"
+                            onChange={uploadFile}
+                            required
+                            style={{ display: "none" }}
+                          />
+                        </PictureFile>
+                        <Caption
                           required
-                          style={{ display: "none" }}
+                          type="text"
+                          placeholder="caption"
+                          value={caption}
+                          onChange={(e) => setCaption(e.target.value)}
+                          maxLength={70}
                         />
-                      </PictureFile>
-                      <Caption
-                        required
-                        type="text"
-                        placeholder="caption"
-                        value={caption}
-                        onChange={(e) => setCaption(e.target.value)}
-                        maxLength={70}
-                      />
+                        <ButtonDiv>
+                          <InputButton
+                            disabled={!pictureLoading || !caption}
+                            type="submit"
+                            value="Create Post"
+                          />
+                        </ButtonDiv>
+                      </Form>
                       {picture && (
                         <img
                           src={picture}
-                          style={{ width: "25vw", height: "25vh" }}
+                          style={{ width: "50vw", height: "50vh" }}
                         />
                       )}
-                      <ButtonDiv>
-                        <InputButton
-                          disabled={!pictureLoading || !caption}
-                          type="submit"
-                          value="Create Post"
-                        />
-                      </ButtonDiv>
-                    </Form>
+                    </Container>
                   )}
                 </>
               );

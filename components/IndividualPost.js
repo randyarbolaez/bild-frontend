@@ -15,62 +15,69 @@ import Comments from "./Comments";
 import CreateComment from "./CreateComment";
 
 const Container = styled.div`
-  background: #e9ecef;
-  border-top: 0.5vw solid #e9ecef;
-  border-top-right-radius: 15%;
-  margin: 2vh 1vw;
-  width: 25vmax;
-  height: 25vmax;
+  background: #ffffff;
+  margin: 1vh 0vw;
+  border-radius: 0.5vw;
+  background: #f8f8ff;
+  width: 25vw;
 `;
 
 const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-around;
-  background: #e9ecef;
-  /* padding: 2vmax 1vmax; */
+  width: 100%;
 `;
 
 const Image = styled.img`
   overflow: hidden;
-  border-top: 0.2vw solid #fe5f55;
-  border-top-right-radius: 15%;
-  border-bottom: 0.5vw solid #fe5f55;
-  border-bottom-left-radius: 15%;
+  border-top-right-radius: 0.5vw;
+  border-top-left-radius: 0.5vw;
 `;
 
 let CaptionAndUserInformationContainer = styled.div`
   display: flex;
-
   flex-direction: column;
+  border-bottom: 0.2vw solid black;
+  padding-top: 1vh;
+  margin-top: -2.5vh;
+  margin-bottom: 0.5vh;
 `;
 
 let UserInformationWrapper = styled.div`
   display: flex;
-  justify-content: space-evenly;
   align-items: center;
+`;
+
+let UserNameAndButtons = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-left: 0.2vw solid black;
+  margin-right: 2vw;
 `;
 
 let UserName = styled.p`
   color: black;
+  border: 1px solid transparent;
   margin: 0;
-  border-right: 1px solid #fe5f55;
-  padding-right: 5px;
-  border-top-right-radius: 25%;
+  padding: 0 1vw;
   font-size: 1.2vmax;
+  font-weight: 600;
+  transition: color 0.5s ease-in-out;
+  :hover {
+    color: red;
+  }
 `;
 
 const Caption = styled.p`
-  font-size: 0.8vmax;
+  font-size: 1vmax;
   font-family: "Julius Sans One", sans-serif;
-  margin: 3px 15px;
-
-  padding: 0 0.4vw;
-  /* font-weight: bolder; */
+  font-weight: bolder;
   color: #fe5f55;
-  text-shadow: 2px 2px #d3d3d3;
   text-align: center;
-  background: #ced4da;
+  word-wrap: break-word;
+  margin: 0;
 `;
 
 const Span = styled.span`
@@ -82,7 +89,7 @@ const Span = styled.span`
   }
 `;
 
-const Footer = styled.div`
+const Buttons = styled.div`
   display: flex;
   justify-content: space-around;
 `;
@@ -127,66 +134,87 @@ const IndividualPost = ({ post }) => {
               alt={post.caption}
             />
             <CaptionAndUserInformationContainer>
-              <Link
-                href={{
-                  pathname: "user-profile",
-                  query: { id: post.user.id },
-                }}
-                as={{
-                  pathname: "user-profile",
-                  query: { id: post.user.id },
-                }}
-              >
-                <a>
-                  <UserInformationWrapper>
+              <UserInformationWrapper>
+                <Link
+                  href={{
+                    pathname: "user-profile",
+                    query: { id: post.user.id },
+                  }}
+                  as={{
+                    pathname: "user-profile",
+                    query: { id: post.user.id },
+                  }}
+                >
+                  <a>
                     <img
                       style={{
                         width: "3vmax",
                         borderRadius: "50%",
                         height: "3vmax",
                         border: "2px solid #fe5f55",
+                        margin: "0 0.5vw",
+                        marginTop: "1vh",
                       }}
                       src={post.user.profile.profilePicture}
                     />
-                    <UserName>{post.user.name.toLowerCase()}</UserName>
-                  </UserInformationWrapper>
-                </a>
-              </Link>
-              <Caption>{post.caption}</Caption>
-            </CaptionAndUserInformationContainer>
-            <Wrapper>
-              {(user && user.id) == post.user.id && (
-                <DeletePost postId={post.id} />
-              )}
-              <Span>
-                <FaRegCommentDots
-                  size={20}
-                  onClick={() => setOpenModal(true)}
-                />
-              </Span>
-              <Modal
-                isOpen={openModal}
-                // onAfterOpen={afterOpenModal}
-                ariaHideApp={false}
-                onRequestClose={() => setOpenModal(false)}
-                style={customStyles}
-              >
-                <Comments comments={post.comments} post={post} />
-                <Footer>
-                  <CloseButton
-                    onMouseEnter={() => setWindowClose(!windowClose)}
-                    onMouseLeave={() => setWindowClose(!windowClose)}
+                  </a>
+                </Link>
+                <UserNameAndButtons>
+                  <Link
+                    href={{
+                      pathname: "user-profile",
+                      query: { id: post.user.id },
+                    }}
+                    as={{
+                      pathname: "user-profile",
+                      query: { id: post.user.id },
+                    }}
                   >
-                    {windowClose ? (
-                      <FaRegWindowClose onClick={() => setOpenModal(false)} />
-                    ) : (
-                      <FaWindowClose onClick={() => setOpenModal(false)} />
+                    <a>
+                      <UserName>{post.user.name.toLowerCase()}</UserName>
+                    </a>
+                  </Link>
+                  <Wrapper>
+                    {(user && user.id) == post.user.id && (
+                      <DeletePost postId={post.id} />
                     )}
-                  </CloseButton>
-                  {user && <CreateComment post={post} />}
-                </Footer>
-              </Modal>
-            </Wrapper>
+                    <Span>
+                      <FaRegCommentDots
+                        size={20}
+                        onClick={() => setOpenModal(true)}
+                      />
+                    </Span>
+                    <Modal
+                      isOpen={openModal}
+                      // onAfterOpen={afterOpenModal}
+                      ariaHideApp={false}
+                      onRequestClose={() => setOpenModal(false)}
+                      style={customStyles}
+                    >
+                      <Comments comments={post.comments} post={post} />
+                      <Buttons>
+                        <CloseButton
+                          onMouseEnter={() => setWindowClose(!windowClose)}
+                          onMouseLeave={() => setWindowClose(!windowClose)}
+                        >
+                          {windowClose ? (
+                            <FaRegWindowClose
+                              onClick={() => setOpenModal(false)}
+                            />
+                          ) : (
+                            <FaWindowClose
+                              onClick={() => setOpenModal(false)}
+                            />
+                          )}
+                        </CloseButton>
+                        {user && <CreateComment post={post} />}
+                      </Buttons>
+                    </Modal>
+                  </Wrapper>
+                </UserNameAndButtons>
+              </UserInformationWrapper>
+            </CaptionAndUserInformationContainer>
+            <Caption>{post.caption}</Caption>
           </Container>
         );
       }}

@@ -17,7 +17,7 @@ const Container = styled.div`
   justify-content: space-around;
   font-family: "Julius Sans One", sans-serif;
   align-items: center;
-  width: 100vw;
+  width: 95vw;
 `;
 
 const Wrapper = styled.div`
