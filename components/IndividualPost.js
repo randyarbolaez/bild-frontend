@@ -41,6 +41,9 @@ const LinkToProfile = styled.a`
   margin: 1vh 0;
   align-items: center;
   :hover {
+    p {
+      color: #fe5f55;
+    }
     cursor: pointer;
   }
 `;
@@ -60,9 +63,6 @@ const Username = styled.p`
   font-size: 1.1vmax;
   font-weight: 600;
   transition: color 0.5s ease-in-out;
-  :hover {
-    color: red;
-  }
 `;
 
 const Caption = styled.p`

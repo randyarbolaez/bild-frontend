@@ -12,16 +12,20 @@ import User from "./User";
 import Signout from "./Signout";
 
 const Container = styled.div`
-  height: 7vh;
+  height: 10vh;
   display: flex;
-  justify-content: space-around;
+  // justify-content: space-around;
+  justify-content: space-between;
+  // flex-direction: column;
   font-family: "Julius Sans One", sans-serif;
   align-items: center;
-  width: 95vw;
+  width: 90vw;
+  margin: 0 5vw;
 `;
 
 const Wrapper = styled.div`
   display: flex;
+  justify-content: space-around;
   align-items: center;
 `;
 
@@ -33,7 +37,7 @@ const ShowNavButton = styled.button`
   }
 `;
 
-const UserName = styled.h1`
+const Username = styled.h1`
   color: #66798c;
   font-size: 1.6vw;
   :hover {
@@ -45,13 +49,13 @@ const UserName = styled.h1`
 `;
 
 const TitleContainer = styled.h1`
-  color: #e9ecef;
+  font-size: 4.5vw;
+  color: #e58c8a;
   margin: 0;
   font-weight: 600;
   transition: 0.5s;
   :hover {
-    transition: 0.5s;
-    color: #66798c;
+    color: #fe7471;
   }
 `;
 
@@ -59,14 +63,13 @@ const Button = styled.button`
   background: none;
   border: none;
   font-size: 1.6vw;
-  color: #e9ecef;
-  transition: 0.5s;
+  font-weight: 600;
+  color: #fffff4;
   outline: none;
+  transition: border 0.4s ease-in-out;
+  border-bottom: 3.5px solid transparent;
   :hover {
-    color: #66798c;
-    font-size: 2.3vw;
-    transition: 0.5s;
-    font-weight: bold;
+    border-bottom: 3.5px solid #fa7775;
     cursor: pointer;
   }
 `;
@@ -138,8 +141,7 @@ const Nav = () => {
                 <>
                   <Link href="/" as={"/"}>
                     <a style={{ display: "flex", alignItems: "center" }}>
-                      {/* <RiCamera2Fill size={"1.5vw"} color={"#fe5f55"} /> */}
-                      <TitleContainer>Bild</TitleContainer>
+                      <TitleContainer>BILD</TitleContainer>
                     </a>
                   </Link>
                   {!user && (
@@ -172,11 +174,11 @@ const Nav = () => {
                         }}
                       >
                         <a>
-                          <UserName>
+                          <Username>
                             <span>"</span>
                             {user.name}
                             <span>"</span>
-                          </UserName>
+                          </Username>
                         </a>
                       </Link>
                     </Wrapper>

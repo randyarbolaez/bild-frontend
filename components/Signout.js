@@ -13,24 +13,20 @@ const SIGN_OUT_MUTATION = gql`
   }
 `;
 
-const Button = styled.button`
+const Button = styled.input`
   background: none;
+  margin-top: 0.3vw;
   border: none;
   font-size: 1.6vw;
-  color: #e9ecef;
-  transition: 0.5s;
+  font-weight: 600;
   outline: none;
+  transition: border 0.4s ease-in-out;
+  border-bottom: 3.5px solid transparent;
+  color: #fffff4;
   :hover {
-    color: #66798c;
-    font-size: 2.3vw;
-    transition: 0.5s;
-    font-weight: bold;
+    border-bottom: 3.5px solid #fa7775;
+    // color: #9dc5bb;
     cursor: pointer;
-  }
-  :active {
-    font-size: 1.6vw;
-    color: #e9ecef;
-    transition: 0.5s;
   }
 `;
 
@@ -40,7 +36,9 @@ const Signout = () => {
       mutation={SIGN_OUT_MUTATION}
       refetchQueries={[{ query: CURRENT_USER_QUERY }]}
     >
-      {(signout) => <Button onClick={signout}>Signout</Button>}
+      {(signout) => (
+        <Button type="button" onClick={signout} value={"Signout"} />
+      )}
     </Mutation>
   );
 };
