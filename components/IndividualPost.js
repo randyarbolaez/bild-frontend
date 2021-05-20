@@ -15,18 +15,12 @@ import Comments from "./Comments";
 import CreateComment from "./CreateComment";
 
 const Container = styled.div`
-  background: #ffffff;
   margin: 1vh 0vw;
   border-radius: 0.5vw;
   background: #f8f8ff;
+  abckground: purple;
   width: 25vw;
-`;
-
-const Wrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  width: 100%;
+  height: 100%;
 `;
 
 const Image = styled.img`
@@ -35,34 +29,35 @@ const Image = styled.img`
   border-top-left-radius: 0.5vw;
 `;
 
-let CaptionAndUserInformationContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  border-bottom: 0.2vw solid black;
-  padding-top: 1vh;
-  margin-top: -2.5vh;
-  margin-bottom: 0.5vh;
-`;
-
-let UserInformationWrapper = styled.div`
+const UserInformationWrapper = styled.div`
   display: flex;
   align-items: center;
+  margin-top: -2vh;
+  margin-left: 0.5vw;
 `;
 
-let UserNameAndButtons = styled.div`
+const LinkToProfile = styled.a`
   display: flex;
-  flex-direction: column;
+  margin: 1vh 0;
   align-items: center;
-  border-left: 0.2vw solid black;
-  margin-right: 2vw;
+  :hover {
+    cursor: pointer;
+  }
 `;
 
-let UserName = styled.p`
-  color: black;
-  border: 1px solid transparent;
+const ProfilePictureImage = styled.img`
+  width: 2.3vmax;
+  height: 2.3vmax;
+  border: 2px solid #fe5f55;
+  border-radius: 50%;
+  margin-left: 0.5vw;
+`;
+
+const Username = styled.p`
+  color: #535353;
   margin: 0;
-  padding: 0 1vw;
-  font-size: 1.2vmax;
+  padding: 0 0.5vw;
+  font-size: 1.1vmax;
   font-weight: 600;
   transition: color 0.5s ease-in-out;
   :hover {
@@ -74,22 +69,19 @@ const Caption = styled.p`
   font-size: 1vmax;
   font-family: "Julius Sans One", sans-serif;
   font-weight: bolder;
-  color: #fe5f55;
-  text-align: center;
+  color: #939393;
   word-wrap: break-word;
-  margin: 0;
+  margin: -0.5vh 0 0 0.5vw;
 `;
 
-const Span = styled.span`
-  color: #2b2d42;
-  :hover {
-    color: #fe5f55;
-    transition: 0.5s;
-    cursor: pointer;
-  }
+const PostButtons = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
 `;
 
-const Buttons = styled.div`
+const ModalButtons = styled.div`
   display: flex;
   justify-content: space-around;
 `;
@@ -98,6 +90,18 @@ const CloseButton = styled.span`
   font-size: 1.8vw;
   color: #fe5f55;
   :hover {
+    cursor: pointer;
+  }
+`;
+
+const Span = styled.span`
+  color: #2b2d42;
+  margin: 0;
+  padding: 0;
+  padding: 0 0.5vw;
+  :hover {
+    color: #fe5f55;
+    transition: 0.5s;
     cursor: pointer;
   }
 `;
@@ -133,88 +137,56 @@ const IndividualPost = ({ post }) => {
               src={post.picture ? post.picture : null}
               alt={post.caption}
             />
-            <CaptionAndUserInformationContainer>
-              <UserInformationWrapper>
-                <Link
-                  href={{
-                    pathname: "user-profile",
-                    query: { id: post.user.id },
-                  }}
-                  as={{
-                    pathname: "user-profile",
-                    query: { id: post.user.id },
-                  }}
-                >
-                  <a>
-                    <img
-                      style={{
-                        width: "3vmax",
-                        borderRadius: "50%",
-                        height: "3vmax",
-                        border: "2px solid #fe5f55",
-                        margin: "0 0.5vw",
-                        marginTop: "1vh",
-                      }}
-                      src={post.user.profile.profilePicture}
-                    />
-                  </a>
-                </Link>
-                <UserNameAndButtons>
-                  <Link
-                    href={{
-                      pathname: "user-profile",
-                      query: { id: post.user.id },
-                    }}
-                    as={{
-                      pathname: "user-profile",
-                      query: { id: post.user.id },
-                    }}
-                  >
-                    <a>
-                      <UserName>{post.user.name.toLowerCase()}</UserName>
-                    </a>
-                  </Link>
-                  <Wrapper>
-                    {(user && user.id) == post.user.id && (
-                      <DeletePost postId={post.id} />
-                    )}
-                    <Span>
-                      <FaRegCommentDots
-                        size={20}
-                        onClick={() => setOpenModal(true)}
-                      />
-                    </Span>
-                    <Modal
-                      isOpen={openModal}
-                      // onAfterOpen={afterOpenModal}
-                      ariaHideApp={false}
-                      onRequestClose={() => setOpenModal(false)}
-                      style={customStyles}
-                    >
-                      <Comments comments={post.comments} post={post} />
-                      <Buttons>
-                        <CloseButton
-                          onMouseEnter={() => setWindowClose(!windowClose)}
-                          onMouseLeave={() => setWindowClose(!windowClose)}
-                        >
-                          {windowClose ? (
-                            <FaRegWindowClose
-                              onClick={() => setOpenModal(false)}
-                            />
-                          ) : (
-                            <FaWindowClose
-                              onClick={() => setOpenModal(false)}
-                            />
-                          )}
-                        </CloseButton>
-                        {user && <CreateComment post={post} />}
-                      </Buttons>
-                    </Modal>
-                  </Wrapper>
-                </UserNameAndButtons>
-              </UserInformationWrapper>
-            </CaptionAndUserInformationContainer>
+            <UserInformationWrapper>
+              <Link
+                href={{
+                  pathname: "user-profile",
+                  query: { id: post.user.id },
+                }}
+                as={{
+                  pathname: "user-profile",
+                  query: { id: post.user.id },
+                }}
+              >
+                <LinkToProfile>
+                  <ProfilePictureImage src={post.user.profile.profilePicture} />
+                  <Username>{post.user.name.toLowerCase()}</Username>
+                </LinkToProfile>
+              </Link>
+            </UserInformationWrapper>
             <Caption>{post.caption}</Caption>
+            <Modal
+              isOpen={openModal}
+              ariaHideApp={false}
+              onRequestClose={() => setOpenModal(false)}
+              style={customStyles}
+            >
+              <Comments comments={post.comments} post={post} />
+              <ModalButtons>
+                <CloseButton
+                  onMouseEnter={() => setWindowClose(!windowClose)}
+                  onMouseLeave={() => setWindowClose(!windowClose)}
+                >
+                  {windowClose ? (
+                    <FaRegWindowClose onClick={() => setOpenModal(false)} />
+                  ) : (
+                    <FaWindowClose onClick={() => setOpenModal(false)} />
+                  )}
+                </CloseButton>
+                {user && <CreateComment post={post} />}
+              </ModalButtons>
+            </Modal>
+            <PostButtons>
+              {(user && user.id) == post.user.id && (
+                <DeletePost postId={post.id} />
+              )}
+              <Span>
+                <FaRegCommentDots
+                  size={15}
+                  onClick={() => setOpenModal(true)}
+                />
+              </Span>
+            </PostButtons>
           </Container>
         );
       }}

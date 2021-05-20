@@ -2,6 +2,7 @@ import React from "react";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import styled from "styled-components";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 import IndividualPost from "./IndividualPost";
 
@@ -35,11 +36,13 @@ const ALL_POSTS_QUERY = gql`
   }
 `;
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
+const styles = {
+  container: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  },
+};
 
 const Posts = () => {
   let posts = null;
@@ -52,10 +55,19 @@ const Posts = () => {
           posts = data.posts;
         }
         return (
-          <Container>
+          <InfiniteScroll
+            dataLength={posts.length}
+            style={styles.container}
+            loader={<h1>Loading...</h1>}
+            endMessage={
+              <p style={{ textAlign: "center" }}>
+                <b>Yay! You have seen it all</b>
+              </p>
+            }
+          >
             {posts &&
               posts.map((post) => <IndividualPost key={post.id} post={post} />)}
-          </Container>
+          </InfiniteScroll>
         );
       }}
     </Query>
