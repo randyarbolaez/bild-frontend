@@ -14,12 +14,6 @@ const DELETE_POST_MUTATION = gql`
   }
 `;
 
-const Button = styled.button`
-  background: none;
-  border: none;
-  font-size: 2vmax;
-`;
-
 const Span = styled.span`
   color: #2b2d42;
   :hover {

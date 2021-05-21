@@ -9,14 +9,8 @@ const Container = styled.div`
   margin-top: 15px;
   height: 70vh;
   width: 80vw;
-  display: flex;
-  // background: black;
-  align-items: center;
+  flex-direction: column;
   overflow-y: auto;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  align-content: space-between;
-  flex-grow: 1;
 `;
 
 const Comments = ({ comments, post }) => {

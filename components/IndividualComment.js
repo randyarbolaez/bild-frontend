@@ -1,65 +1,76 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
+import Link from "next/link";
 
 import DeleteComment from "./DeleteComment";
 import User from "./User";
 
-const Container = styled.div`
-  border-radius: 0.4vw;
-  max-width: 20vw;
-  min-width: 20vw;
+const ATag = styled.a`
+  display: flex;
   align-items: center;
-  background: #27a888;
-  margin: 5px 0;
-  border: none;
-  margin-top: 0;
+`;
+
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 5px 5px 10px #ddd;
+  border-radius: 0.5vw;
   margin: 1.2vh 1.2vw;
-  // margin-right: 1.2vw;
+`;
+
+const Container = styled.div`
+  margin: 1.1vh 0;
+  margin-left: 1.2vw;
 `;
 
 const InformationWrapper = styled.div`
   display: flex;
-  align-items: center;
-  border-bottom: 0.2vw solid white;
+`;
+
+const ProfilePicture = styled.img`
+  width: 2vmax;
+  border-radius: 50%;
+  height: 2vmax;
+  border: 2px solid #fe5f55;
+  // height: 100%;
 `;
 
 const UserInformationContainer = styled.div`
   display: flex;
-  flex-direction: column;
-  border-left: 0.2vw solid white;
+  align-items: center;
   margin: 0 0.5vw;
 `;
 
-let UserName = styled.p`
-  margin: 0 5px;
-  color: #9dc5bb;
-  font-size: 1.1vmax;
+const Username = styled.p`
+  margin: 0;
+  margin-right: 5px;
+  font-size: 1.01vmax;
   max-width: 7vw;
   font-weight: 700;
+  color: #e98986;
+  :hover {
+    color: #fd2a25;
+  }
 `;
 
-let Content = styled.p`
+const Comment = styled.p`
   font-size: 1vmax;
   margin: 0;
   color: #d3d3d3;
+  color: #a6a6a6;
   overflow-wrap: break-word;
-  max-width: 20vw;
-  max-height: 100%;
-  text-align: center;
+  margin-left: 0.5vw;
 `;
 
-let TimeContainer = styled.div``;
-
-let Time = styled.p`
+const DateTag = styled.p`
   margin: 0;
-  margin-top: -1.5vh;
   font-size: 0.8vmax;
   text-align: center;
-  color: #566246;
+  color: #b3b3b3;
 `;
 
 const IndividualComment = ({ comment }) => {
-  const [userHoverOverComment, setUserHoverOverComment] = useState(false);
   let user = null;
 
   const months = [
@@ -87,51 +98,56 @@ const IndividualComment = ({ comment }) => {
           console.log(comment.user);
         }
         return (
-          <div
-            onMouseEnter={() => setUserHoverOverComment(true)}
-            onMouseLeave={() => setUserHoverOverComment(false)}
-          >
+          <Wrapper>
             <Container>
               <InformationWrapper>
-                <img
-                  style={{
-                    width: "2vmax",
-                    borderRadius: "50%",
-                    height: "2vmax",
-                    border: "2px solid #fe5f55",
-                    marginLeft: "0.5vw",
+                <Link
+                  href={{
+                    pathname: "user-profile",
+                    query: { id: comment.user.id },
                   }}
-                  src={comment.user.profile.profilePicture}
-                  alt={comment.user.name}
-                />
+                  as={{
+                    pathname: "user-profile",
+                    query: { id: comment.user.id },
+                  }}
+                >
+                  <ATag>
+                    <ProfilePicture
+                      src={comment.user.profile.profilePicture}
+                      alt={comment.user.name}
+                    />
+                  </ATag>
+                </Link>
                 <UserInformationContainer>
-                  {!userHoverOverComment &&
-                    (user && user.id) == comment.user.id && (
-                      <>
-                        <UserName>{comment.user.name}</UserName>
-                        <TimeContainer>
-                          <Time>
-                            {`${
-                              months[new Date(comment.createdAt).getMonth()]
-                            } ${new Date(
-                              comment.createdAt
-                            ).getDate()}, ${new Date(
-                              comment.createdAt
-                            ).getFullYear()}`}
-                          </Time>
-                        </TimeContainer>
-                      </>
-                    )}
-                  {userHoverOverComment &&
-                    (user && user.id) == comment.user.id && (
-                      <DeleteComment commentId={comment.id} />
-                    )}
+                  <Link
+                    href={{
+                      pathname: "user-profile",
+                      query: { id: comment.user.id },
+                    }}
+                    as={{
+                      pathname: "user-profile",
+                      query: { id: comment.user.id },
+                    }}
+                  >
+                    <ATag>
+                      <Username>{comment.user.name}</Username>
+                    </ATag>
+                  </Link>
+                  <DateTag>
+                    {`${
+                      months[new Date(comment.createdAt).getMonth()]
+                    } ${new Date(comment.createdAt).getDate()}, ${new Date(
+                      comment.createdAt
+                    ).getFullYear()}`}
+                  </DateTag>
                 </UserInformationContainer>
               </InformationWrapper>
-
-              <Content>{comment.content}</Content>
+              <Comment>{comment.content}</Comment>
             </Container>
-          </div>
+            {(user && user.id) == comment.user.id && (
+              <DeleteComment commentId={comment.id} />
+            )}
+          </Wrapper>
         );
       }}
     </User>

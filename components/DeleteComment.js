@@ -2,8 +2,7 @@ import React from "react";
 import { Mutation } from "react-apollo";
 import gql from "graphql-tag";
 import styled from "styled-components";
-import { TiDelete } from "react-icons/ti";
-
+import { RiDeleteBin2Line } from "react-icons/ri";
 import { ALL_POSTS_QUERY } from "./Posts";
 
 const DELETE_COMMENT_MUTATION = gql`
@@ -14,27 +13,13 @@ const DELETE_COMMENT_MUTATION = gql`
   }
 `;
 
-const Button = styled.button`
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  // margin-left: 20%;
-  // margin-right: 20%;
-  margin: 1vh 0;
-  font-weight: 600;
-  display: flex;
-  background: none;
-  // background: white;
-  border: none;
-  font-size: 1.3vw;
-  color: #ffd6d4;
-  outline: none;
-  transition: color 0.3s ease-in-out;
-  border-top-right-radius: 1vw;
-  border-top-left-radius: 1vw;
+const Span = styled.span`
+  color: #2b2d42;
+  margin-right: 1.2vw;
   :hover {
-    cursor: pointer;
     color: #fe5f55;
+    transition: 0.5s;
+    cursor: pointer;
   }
 `;
 
@@ -45,18 +30,19 @@ const DeleteComment = ({ commentId }) => (
     refetchQueries={[{ query: ALL_POSTS_QUERY }]}
   >
     {(deleteOneComment, { loading, error }) => (
-      <Button
-        onClick={async (e) => {
-          e.preventDefault();
-          try {
-            await deleteOneComment();
-          } catch (error) {
-            console.log("Error[DeleteComment.js]: ", error);
-          }
-        }}
-      >
-        Delete
-      </Button>
+      <Span>
+        <RiDeleteBin2Line
+          size={16}
+          onClick={async (e) => {
+            e.preventDefault();
+            try {
+              await deleteOneComment();
+            } catch (error) {
+              console.log("Error[DeleteComment.js]: ", error);
+            }
+          }}
+        />
+      </Span>
     )}
   </Mutation>
 );

@@ -53,7 +53,6 @@ const ProfilePictureImage = styled.img`
   height: 2.3vmax;
   border: 2px solid #fe5f55;
   border-radius: 50%;
-  margin-left: 0.5vw;
 `;
 
 const Username = styled.p`

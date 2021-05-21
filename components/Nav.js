@@ -38,12 +38,10 @@ const ShowNavButton = styled.button`
 `;
 
 const Username = styled.h1`
-  color: #66798c;
+  color: #fe7471;
   font-size: 1.6vw;
   :hover {
-    span {
-      color: #e9ecef;
-    }
+    color: red;
     cursor: pointer;
   }
 `;
@@ -174,11 +172,7 @@ const Nav = () => {
                         }}
                       >
                         <a>
-                          <Username>
-                            <span>"</span>
-                            {user.name}
-                            <span>"</span>
-                          </Username>
+                          <Username>{user.name}</Username>
                         </a>
                       </Link>
                     </Wrapper>
