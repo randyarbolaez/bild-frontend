@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 
 import IndividualComment from "./IndividualComment";
-import CreateComment from "./CreateComment";
 import User from "./User";
 
 const Container = styled.div`
@@ -11,6 +10,13 @@ const Container = styled.div`
   width: 80vw;
   flex-direction: column;
   overflow-y: auto;
+`;
+
+const NoComments = styled.h1`
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
+  font-size: 2em;
+  color: #3fa7d6;
 `;
 
 const Comments = ({ comments, post }) => {
@@ -25,10 +31,13 @@ const Comments = ({ comments, post }) => {
         }
         return (
           <Container>
-            {comments.map((comment) => (
-              <IndividualComment key={comment.id} comment={comment} />
-            ))}
-            {/* {user && <CreateComment post={post} />} */}
+            {comments.length == 0 ? (
+              <NoComments>Nobody has commented, be the first!</NoComments>
+            ) : (
+              comments.map((comment) => (
+                <IndividualComment key={comment.id} comment={comment} />
+              ))
+            )}
           </Container>
         );
       }}

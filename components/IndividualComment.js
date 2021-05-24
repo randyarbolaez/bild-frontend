@@ -33,7 +33,6 @@ const ProfilePicture = styled.img`
   border-radius: 50%;
   height: 2vmax;
   border: 2px solid #fe5f55;
-  // height: 100%;
 `;
 
 const UserInformationContainer = styled.div`
@@ -51,6 +50,7 @@ const Username = styled.p`
   color: #e98986;
   :hover {
     color: #fd2a25;
+    cursor: pointer;
   }
 `;
 
