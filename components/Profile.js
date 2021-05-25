@@ -147,11 +147,17 @@ const Profile = (props) => {
     "Nov",
     "Dec",
   ];
+
   return (
-    <Query query={GET_ONE_USER_QUERY} variables={{ id: props.id }}>
-      {({ data, loading, error }) => {
+    <Query
+      query={GET_ONE_USER_QUERY}
+      variables={{ id: props.id }}
+      fetchPolicy="no-cache"
+    >
+      {({ data, loading, error, refetch }) => {
         if (!data) {
           user = null;
+          refetch();
         } else {
           user = data.getOneUser;
         }

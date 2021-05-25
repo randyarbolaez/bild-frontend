@@ -14,9 +14,7 @@ import Signout from "./Signout";
 const Container = styled.div`
   height: 10vh;
   display: flex;
-  // justify-content: space-around;
   justify-content: space-between;
-  // flex-direction: column;
   font-family: "Julius Sans One", sans-serif;
   align-items: center;
   width: 90vw;
@@ -110,7 +108,6 @@ const Nav = () => {
               style={{
                 position: "fixed",
                 bottom: "20px",
-                right: "20px",
                 zIndex: 6,
               }}
             >

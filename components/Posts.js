@@ -59,11 +59,6 @@ const Posts = () => {
             dataLength={posts.length}
             style={styles.container}
             loader={<h1>Loading...</h1>}
-            endMessage={
-              <p style={{ textAlign: "center" }}>
-                <b>Yay! You have seen it all</b>
-              </p>
-            }
           >
             {posts &&
               posts.map((post) => <IndividualPost key={post.id} post={post} />)}
