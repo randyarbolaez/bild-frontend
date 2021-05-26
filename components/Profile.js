@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import styled from "styled-components";
@@ -30,10 +30,11 @@ const GET_ONE_USER_QUERY = gql`
 
 const Container = styled.div`
   display: flex;
-  width: 80vw;
-  margin: 15px 10vw;
+  width: 100vw;
+  // margin: 15px 10vw;
   text-align: center;
   height: auto;
+  justify-content: center;
 `;
 
 const PostWrapper = styled.div`
@@ -130,7 +131,20 @@ let CommentTimestamp = styled.p`
   font-size: 0.8vw;
 `;
 
+let Title = styled.input`
+  background: none;
+  border: none;
+  border-bottom: 0.5vw solid transparent;
+  color: #c33c3c;
+  :disabled {
+    color: #dd2222;
+    font-weight: bold;
+    border-bottom: 0.5vw solid yellow;
+  }
+`;
+
 const Profile = (props) => {
+  const [isPostSide, setIsPostSide] = useState(true);
   let user = null;
 
   const months = [
@@ -163,9 +177,25 @@ const Profile = (props) => {
         }
         return (
           <Container>
-            <PostWrapper>
-              <PostTitle>Posts</PostTitle>
-              {(user && user.posts) == null ? (
+            <Title
+              disabled={isPostSide == true}
+              style={{ padding: "5%" }}
+              onClick={() => setIsPostSide(true)}
+              value={"post"}
+              type="button"
+            />
+            <Title
+              disabled={isPostSide == false}
+              style={{ padding: "5%" }}
+              onClick={() => setIsPostSide(false)}
+              value={"Comments"}
+              type="button"
+            />
+            {isPostSide == true && <h1>post</h1>}
+            {isPostSide == false && <h1>comments</h1>}
+            {/* <PostWrapper> */}
+            {/* <PostTitle>Posts</PostTitle> */}
+            {/* {(user && user.posts) == null ? (
                 <p>No Posts</p>
               ) : (
                 user.posts.map((post) => (
@@ -174,11 +204,11 @@ const Profile = (props) => {
                     <PostCaption>{post.caption}</PostCaption>
                   </IndividualPost>
                 ))
-              )}
-            </PostWrapper>
-            <CommentWrapper>
-              <CommentTitle>Comments</CommentTitle>
-              {(user && user.comments) == null ? (
+              )} */}
+            {/* </PostWrapper> */}
+            {/* <CommentWrapper> */}
+            {/* <CommentTitle>Comments</CommentTitle> */}
+            {/* {(user && user.comments) == null ? (
                 <p>No Comment</p>
               ) : (
                 user.comments.map((comment) => (
@@ -193,12 +223,13 @@ const Profile = (props) => {
                     </CommentTimestamp>
                   </IndividualComment>
                 ))
-              )}
-            </CommentWrapper>
+              )} */}
+            {/* </CommentWrapper> */}
           </Container>
         );
       }}
     </Query>
   );
 };
+
 export default Profile;
