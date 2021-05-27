@@ -12,7 +12,7 @@ import User from "./User";
 import Signout from "./Signout";
 
 const Container = styled.div`
-  height: 10vh;
+  // height: 10vh;
   display: flex;
   justify-content: space-between;
   font-family: "Julius Sans One", sans-serif;
@@ -130,6 +130,7 @@ const Nav = () => {
               style={{
                 position:
                   navInfoShown && url !== "authenticate" ? null : "fixed",
+                height: navInfoShown ? "10vh" : null,
               }}
             >
               {navInfoShown ? (

@@ -30,11 +30,59 @@ const GET_ONE_USER_QUERY = gql`
 
 const Container = styled.div`
   display: flex;
-  width: 100vw;
-  // margin: 15px 10vw;
+  width: 90vw;
   text-align: center;
+  flex-direction: column;
   height: auto;
   justify-content: center;
+  // margin-top: 2vh;
+  margin: 2vh 5vw 0 5vw;
+`;
+
+const TitleButtonContainer = styled.div``;
+
+const PostTitleButton = styled.input`
+  background: none;
+  border: none;
+  border-bottom: 0.3vw solid #d56062;
+  border-right: 0.3vw solid #d56062;
+  padding: 0.8vw;
+  font-size: 1.2vw;
+  cursor: pointer;
+  font-weight: bold;
+  color: #bd8f7e;
+  :hover {
+    color: #f37748;
+  }
+  :disabled {
+    :hover {
+      color: #f37748;
+    }
+    cursor: default;
+    color: #f37748;
+    font-weight: 900;
+  }
+`;
+
+const CommentTitleButton = styled.input`
+  background: none;
+  border: none;
+  border-bottom: 0.3vw solid #d56062;
+  padding: 0.8vw;
+  font-size: 1.2vw;
+  color: #bd8f7e;
+  cursor: pointer;
+  :hover {
+    color: #f37748;
+  }
+  :disabled {
+    :hover {
+      color: #f37748;
+    }
+    cursor: default;
+    color: #f37748;
+    font-weight: 900;
+  }
 `;
 
 const PostWrapper = styled.div`
@@ -43,17 +91,6 @@ const PostWrapper = styled.div`
   border-top-left-radius: 25px;
   border-right: 1px solid #fe5f55;
   /* border-top-right-radius: 25px; */
-`;
-
-const PostTitle = styled.h2`
-  width: 100%;
-  border-bottom: 1px solid #fe5f55;
-  color: #ffb5a7;
-  font-family: "Montserrat", sans-serif;
-  font-size: 2.4vmax;
-  :hover {
-    color: #fe5f55;
-  }
 `;
 
 const IndividualPost = styled.div`
@@ -90,17 +127,6 @@ const CommentWrapper = styled.div`
   border-left: 1px solid #fe5f55;
 `;
 
-const CommentTitle = styled.h2`
-  width: 100%;
-  border-bottom: 1px solid #fe5f55;
-  color: #ffb5a7;
-  font-family: "Montserrat", sans-serif;
-  font-size: 2.4vmax;
-  :hover {
-    color: #fe5f55;
-  }
-`;
-
 let IndividualComment = styled.div`
   margin: 0 4vw;
   display: flex;
@@ -129,18 +155,6 @@ let CommentContent = styled.h2`
 let CommentTimestamp = styled.p`
   margin-top: 0;
   font-size: 0.8vw;
-`;
-
-let Title = styled.input`
-  background: none;
-  border: none;
-  border-bottom: 0.5vw solid transparent;
-  color: #c33c3c;
-  :disabled {
-    color: #dd2222;
-    font-weight: bold;
-    border-bottom: 0.5vw solid yellow;
-  }
 `;
 
 const Profile = (props) => {
@@ -177,20 +191,20 @@ const Profile = (props) => {
         }
         return (
           <Container>
-            <Title
-              disabled={isPostSide == true}
-              style={{ padding: "5%" }}
-              onClick={() => setIsPostSide(true)}
-              value={"post"}
-              type="button"
-            />
-            <Title
-              disabled={isPostSide == false}
-              style={{ padding: "5%" }}
-              onClick={() => setIsPostSide(false)}
-              value={"Comments"}
-              type="button"
-            />
+            <TitleButtonContainer>
+              <PostTitleButton
+                disabled={isPostSide == true}
+                onClick={() => setIsPostSide(true)}
+                value={"Posts"}
+                type="button"
+              />
+              <CommentTitleButton
+                disabled={isPostSide == false}
+                onClick={() => setIsPostSide(false)}
+                value={"Comments"}
+                type="button"
+              />
+            </TitleButtonContainer>
             {isPostSide == true && <h1>post</h1>}
             {isPostSide == false && <h1>comments</h1>}
             {/* <PostWrapper> */}
