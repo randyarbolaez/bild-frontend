@@ -18,7 +18,6 @@ const Container = styled.div`
   margin: 1vh 0vw;
   border-radius: 0.5vw;
   background: #f8f8ff;
-  abckground: purple;
   width: 25vw;
   height: 100%;
 `;

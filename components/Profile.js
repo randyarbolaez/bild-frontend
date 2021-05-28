@@ -3,6 +3,8 @@ import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import styled from "styled-components";
 
+import DeletePost from "./DeletePost";
+
 const GET_ONE_USER_QUERY = gql`
   query GET_ONE_USER_QUERY($id: String!) {
     getOneUser(userId: $id) {
@@ -12,12 +14,16 @@ const GET_ONE_USER_QUERY = gql`
         id
         caption
         picture
+        user {
+          id
+        }
       }
       comments {
         id
         content
         createdAt
         user {
+          id
           name
         }
       }
@@ -35,7 +41,6 @@ const Container = styled.div`
   flex-direction: column;
   height: auto;
   justify-content: center;
-  // margin-top: 2vh;
   margin: 2vh 5vw 0 5vw;
 `;
 
@@ -51,6 +56,7 @@ const PostTitleButton = styled.input`
   cursor: pointer;
   font-weight: bold;
   color: #bd8f7e;
+  transition: color 0.4s ease-in-out;
   :hover {
     color: #f37748;
   }
@@ -60,7 +66,6 @@ const PostTitleButton = styled.input`
     }
     cursor: default;
     color: #f37748;
-    font-weight: 900;
   }
 `;
 
@@ -70,8 +75,10 @@ const CommentTitleButton = styled.input`
   border-bottom: 0.3vw solid #d56062;
   padding: 0.8vw;
   font-size: 1.2vw;
+  font-weight: bold;
   color: #bd8f7e;
   cursor: pointer;
+  transition: color 0.4s ease-in-out;
   :hover {
     color: #f37748;
   }
@@ -81,8 +88,45 @@ const CommentTitleButton = styled.input`
     }
     cursor: default;
     color: #f37748;
-    font-weight: 900;
   }
+`;
+
+const SubjectContainer = styled.div`
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const IndividualPost = styled.div`
+  width: 20vw;
+  margin: 2vh 4vw;
+  display: flex;
+  flex-direction: column;
+  background: #f8f8ff;
+  align-items: center;
+  border-radius: 0 0 0.5vw 0.5vw;
+`;
+
+const PostImage = styled.img`
+  width: 100%;
+  border-radius: 0.5vw 0.5vw 0% 0%;
+`;
+
+const CaptionContainer = styled.div`
+  display: flex;
+  align-items: flex-end;
+  // flex-direction: column;
+  width: 96%;
+`;
+
+const PostCaption = styled.p`
+  font-size: 1.02vw;
+  color: #939393;
+  width: 100%;
+  margin-top: 0;
+  text-align: left;
+  padding-left: 1vw;
 `;
 
 const PostWrapper = styled.div`
@@ -91,32 +135,6 @@ const PostWrapper = styled.div`
   border-top-left-radius: 25px;
   border-right: 1px solid #fe5f55;
   /* border-top-right-radius: 25px; */
-`;
-
-const IndividualPost = styled.div`
-  margin: 0 4vw;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const PostImage = styled.img`
-  width: 15vw;
-  background: #fe5f55;
-  border: 0.4vw solid #fe5f55;
-  border-top-left-radius: 25px;
-  border-top-right-radius: 25px;
-`;
-
-const PostCaption = styled.p`
-  font-size: 1.1vw;
-  color: #fffff4;
-  border-radius: 25px;
-  background: #fe5f55;
-  width: 30vw;
-  margin-top: 0;
-  padding: 1vw;
-  /* padding: 0vw 2vw; */
 `;
 
 const CommentWrapper = styled.div`
@@ -205,20 +223,40 @@ const Profile = (props) => {
                 type="button"
               />
             </TitleButtonContainer>
-            {isPostSide == true && <h1>post</h1>}
-            {isPostSide == false && <h1>comments</h1>}
+            <SubjectContainer>
+              {isPostSide && (
+                <>
+                  {(user && user.posts) == null ? (
+                    <p>No Posts</p>
+                  ) : (
+                    user.posts.map((post) => (
+                      <IndividualPost key={post.id}>
+                        <PostImage src={post.picture} alt={post.caption} />
+                        <CaptionContainer>
+                          <PostCaption>{post.caption}</PostCaption>
+                          {/* {(user && user.id) == post.user.id && (
+                            <DeletePost postId={post.id} />
+                          )} */}
+                        </CaptionContainer>
+                      </IndividualPost>
+                    ))
+                  )}
+                </>
+              )}
+              {!isPostSide && <h1>comments</h1>}
+            </SubjectContainer>
             {/* <PostWrapper> */}
             {/* <PostTitle>Posts</PostTitle> */}
             {/* {(user && user.posts) == null ? (
-                <p>No Posts</p>
-              ) : (
-                user.posts.map((post) => (
-                  <IndividualPost>
-                    <PostImage src={post.picture} alt={post.caption} />
-                    <PostCaption>{post.caption}</PostCaption>
-                  </IndividualPost>
-                ))
-              )} */}
+              <p>No Posts</p>
+            ) : (
+              user.posts.map((post) => (
+                <IndividualPost>
+                  <PostImage src={post.picture} alt={post.caption} />
+                  <PostCaption>{post.caption}</PostCaption>
+                </IndividualPost>
+              ))
+            )} */}
             {/* </PostWrapper> */}
             {/* <CommentWrapper> */}
             {/* <CommentTitle>Comments</CommentTitle> */}
