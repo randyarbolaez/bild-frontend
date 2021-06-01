@@ -98,7 +98,7 @@ let InputButton = styled.input`
   cursor: pointer;
   outline: none;
   font-family: "Montserrat", sans-serif;
-  color: #fffff4;
+  color: #f2ece3;
   font-weight: 600;
   font-size: 2vw;
   border: none;

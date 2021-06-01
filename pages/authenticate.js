@@ -24,8 +24,6 @@ let WrapperSwitch = styled.div`
   flex-direction: column;
   text-align: center;
   justify-content: center;
-  // border-top-left-radius: 5%;
-  // border-bottom-left-radius: 5%;
 `;
 
 let Title = styled.h1`
@@ -43,6 +41,28 @@ let SubTitle = styled.p`
   align-self: center;
 `;
 
+// let InputButton = styled.input`
+//   font-family: "Montserrat", sans-serif;
+//   font-weight: bold;
+//   width: 30%;
+//   margin: 4px 2px;
+//   padding: 10px 0;
+//   border: none;
+//   border-radius: 16px;
+//   background: white;
+//   border-color: red;
+//   color: #8ea8c3;
+//   align-self: center;
+//   text-decoration: none;
+//   font-size: 1.2vw;
+//   cursor: pointer;
+//   outline: none;
+//   // background-image: linear-gradient(to right, #fffff4, #fe5f55);
+//   transition: transform 0.5s ease-in-out;
+//   :hover {
+//     transform: scale(1.2);
+//   }
+// `;
 let InputButton = styled.input`
   font-family: "Montserrat", sans-serif;
   font-weight: bold;
@@ -50,21 +70,19 @@ let InputButton = styled.input`
   margin: 4px 2px;
   padding: 10px 0;
   border: none;
-  border-radius: 16px;
-  background: white;
-  border-color: red;
+  // border-radius: 16px;
+  border-bottom: 3px solid #f8f8ff;
+  background: transparent;
+  // border-color: red;
   color: #8ea8c3;
   align-self: center;
   text-decoration: none;
-  font-size: 1.2vw;
+  font-size: 1.4vw;
   cursor: pointer;
   outline: none;
-  background-image: linear-gradient(to right, #fffff4, #fe5f55);
-  transition: 0.5s;
+  transition: transform 0.5s ease-in-out;
   :hover {
-    // transition: 10s;
-    width: 32%;
-    background: none;
+    transform: scale(1.2);
   }
 `;
 
@@ -107,12 +125,14 @@ export default function authenticate() {
                     >
                       <Title style={{ color: "#fe5f55" }}>Sign Up!</Title>
                       <SubTitle style={{ color: "#fe5f55" }}>
-                        If you don't already have an account please sign up.
+                        If you don't have an account please sign up.
                       </SubTitle>
                       <InputButton
                         style={{
-                          backgroundColor: "#fe5f55",
+                          // backgroundColor: "#fe5f55",
                           color: "#fffff4",
+                          color: "#fe5f55",
+                          borderColor: "#fe776e",
                         }}
                         onClick={() => setIsSignUp(!isSignUp)}
                         type="button"
@@ -136,8 +156,10 @@ export default function authenticate() {
                       </SubTitle>
                       <InputButton
                         style={{
-                          backgroundColor: "#fffff4",
+                          // backgroundColor: "#fffff4",
                           color: "#fe5f55",
+                          color: "#fffff4",
+                          borderColor: "#fafaf9",
                         }}
                         onClick={() => setIsSignUp(!isSignUp)}
                         type="button"

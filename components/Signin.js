@@ -79,7 +79,7 @@ let InputButton = styled.input`
   font-weight: 600;
   padding: 10px 0;
   width: 12vw;
-  color: #fe5f55;
+  color: #e07973;
   transition: 0.9;
   border-top-right-radius: 0.4vw;
   border-bottom-right-radius: 0.4vw;
