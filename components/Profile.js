@@ -3,7 +3,8 @@ import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import styled from "styled-components";
 
-import DeletePost from "./DeletePost";
+import Posts from "./Posts";
+import Comments from "./Comments";
 
 const GET_ONE_USER_QUERY = gql`
   query GET_ONE_USER_QUERY($id: String!) {
@@ -25,6 +26,9 @@ const GET_ONE_USER_QUERY = gql`
         user {
           id
           name
+          profile {
+            profilePicture
+          }
         }
       }
       profile {
@@ -105,7 +109,7 @@ const IndividualPost = styled.div`
   flex-direction: column;
   background: #f8f8ff;
   align-items: center;
-  border-radius: 0 0 0.5vw 0.5vw;
+  border-radius: 0.5vw 0.5vw 0.5vw 0.5vw;
 `;
 
 const PostImage = styled.img`
@@ -116,7 +120,6 @@ const PostImage = styled.img`
 const CaptionContainer = styled.div`
   display: flex;
   align-items: flex-end;
-  // flex-direction: column;
   width: 96%;
 `;
 
@@ -129,50 +132,38 @@ const PostCaption = styled.p`
   padding-left: 1vw;
 `;
 
-const PostWrapper = styled.div`
-  width: 50%;
-  background: #fffff4;
-  border-top-left-radius: 25px;
-  border-right: 1px solid #fe5f55;
-  /* border-top-right-radius: 25px; */
-`;
-
-const CommentWrapper = styled.div`
-  height: auto;
-  width: 50%;
-  background: #fffff4;
-  border-top-right-radius: 25px;
-  border-left: 1px solid #fe5f55;
-`;
-
 let IndividualComment = styled.div`
-  margin: 0 4vw;
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  margin: 10px 10vw;
-  border: 0.4vw solid #fe5f55;
+  align-items: flex-end;
+  border-radius: 0.5vw;
   transition: 0.8s;
-  :hover {
-    border: 0.4vw solid #fffff4;
-    transition: 0.8s;
-    background: #fe5f55;
-    p {
-      color: #fffff4;
-    }
-  }
+  background: #e0e0e0;
+  width: 50vw;
+  margin: 1.2vh 1.2vw;
 `;
 
 let CommentContent = styled.h2`
-  background: #fffff4;
+  background-image: linear-gradient(to right, #fffff4, #e0e0e0);
+  display: flex;
+  margin: 0;
+  align-items: left;
+  padding-left: 1.2vw;
   font-size: 1vw;
-  margin-bottom: 0;
-  color: #fe5f55;
+  color: #e98986;
+  width: 50vw;
+  border-radius: 0.5vw 0 0 0.5vw;
 `;
 
 let CommentTimestamp = styled.p`
-  margin-top: 0;
   font-size: 0.8vw;
+  width: 10vw;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  align-items: center;
+  text-align: center;
+  padding-top: auto;
+  margin: auto;
 `;
 
 const Profile = (props) => {
@@ -226,24 +217,47 @@ const Profile = (props) => {
             <SubjectContainer>
               {isPostSide && (
                 <>
+                  {/* {console.log(user.posts)} */}
                   {(user && user.posts) == null ? (
-                    <p>No Posts</p>
+                    <h1>Loading...</h1>
+                  ) : user.posts.length == 0 ? (
+                    <h1>No Posts</h1>
                   ) : (
                     user.posts.map((post) => (
                       <IndividualPost key={post.id}>
                         <PostImage src={post.picture} alt={post.caption} />
                         <CaptionContainer>
                           <PostCaption>{post.caption}</PostCaption>
-                          {/* {(user && user.id) == post.user.id && (
-                            <DeletePost postId={post.id} />
-                          )} */}
                         </CaptionContainer>
                       </IndividualPost>
                     ))
                   )}
                 </>
               )}
-              {!isPostSide && <h1>comments</h1>}
+              {!isPostSide && (
+                <>
+                  {(user && user.comments) == null ? (
+                    <h1>Loading</h1>
+                  ) : user.comments.length == 0 ? (
+                    <h1>No Comments</h1>
+                  ) : (
+                    user.comments.map((comment) => (
+                      <IndividualComment>
+                        <CommentContent>{comment.content}</CommentContent>
+                        <CommentTimestamp>
+                          {`${
+                            months[new Date(comment.createdAt).getMonth()]
+                          } ${new Date(
+                            comment.createdAt
+                          ).getDate()}, ${new Date(
+                            comment.createdAt
+                          ).getFullYear()}`}
+                        </CommentTimestamp>
+                      </IndividualComment>
+                    ))
+                  )}
+                </>
+              )}
             </SubjectContainer>
             {/* <PostWrapper> */}
             {/* <PostTitle>Posts</PostTitle> */}
