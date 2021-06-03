@@ -5,3 +5,7 @@
 ## Tools used in this app
 
 > React, Next.js, GraphQL Yoga, Prisma, Styled Component
+
+## Gif of Application
+
+![Alt Text](./public/bild.gif)
