@@ -217,7 +217,6 @@ const Profile = (props) => {
             <SubjectContainer>
               {isPostSide && (
                 <>
-                  {/* {console.log(user.posts)} */}
                   {(user && user.posts) == null ? (
                     <h1>Loading...</h1>
                   ) : user.posts.length == 0 ? (
@@ -259,38 +258,6 @@ const Profile = (props) => {
                 </>
               )}
             </SubjectContainer>
-            {/* <PostWrapper> */}
-            {/* <PostTitle>Posts</PostTitle> */}
-            {/* {(user && user.posts) == null ? (
-              <p>No Posts</p>
-            ) : (
-              user.posts.map((post) => (
-                <IndividualPost>
-                  <PostImage src={post.picture} alt={post.caption} />
-                  <PostCaption>{post.caption}</PostCaption>
-                </IndividualPost>
-              ))
-            )} */}
-            {/* </PostWrapper> */}
-            {/* <CommentWrapper> */}
-            {/* <CommentTitle>Comments</CommentTitle> */}
-            {/* {(user && user.comments) == null ? (
-                <p>No Comment</p>
-              ) : (
-                user.comments.map((comment) => (
-                  <IndividualComment>
-                    <CommentContent>{comment.content}</CommentContent>
-                    <CommentTimestamp>
-                      {`${
-                        months[new Date(comment.createdAt).getMonth()]
-                      } ${new Date(comment.createdAt).getDate()}, ${new Date(
-                        comment.createdAt
-                      ).getFullYear()}`}
-                    </CommentTimestamp>
-                  </IndividualComment>
-                ))
-              )} */}
-            {/* </CommentWrapper> */}
           </Container>
         );
       }}
