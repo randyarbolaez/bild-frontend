@@ -135,26 +135,27 @@ const PostCaption = styled.p`
 let IndividualComment = styled.div`
   display: flex;
   align-items: flex-end;
-  border-radius: 0.5vw;
   transition: 0.8s;
-  background: #e0e0e0;
   width: 50vw;
   margin: 1.2vh 1.2vw;
+  border-top: 0.2vw solid #f7ece1;
+  border-bottom: 0.2vw solid #f7ece1;
 `;
 
 let CommentContent = styled.h2`
-  background-image: linear-gradient(to right, #fffff4, #e0e0e0);
   display: flex;
   margin: 0;
   align-items: left;
   padding-left: 1.2vw;
   font-size: 1vw;
-  color: #e98986;
+  color: #788475;
   width: 50vw;
-  border-radius: 0.5vw 0 0 0.5vw;
+  font-weight: 400;
 `;
 
 let CommentTimestamp = styled.p`
+  background: #e0e0e0;
+  background: #f7ece1;
   font-size: 0.8vw;
   width: 10vw;
   display: flex;
