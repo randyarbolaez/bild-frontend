@@ -5,6 +5,7 @@ import styled from "styled-components";
 
 import Posts from "./Posts";
 import Comments from "./Comments";
+import Loading from "./Loading";
 
 const GET_ONE_USER_QUERY = gql`
   query GET_ONE_USER_QUERY($id: String!) {
@@ -219,7 +220,7 @@ const Profile = (props) => {
               {isPostSide && (
                 <>
                   {(user && user.posts) == null ? (
-                    <h1>Loading...</h1>
+                    <Loading />
                   ) : user.posts.length == 0 ? (
                     <h1>No Posts</h1>
                   ) : (
@@ -237,7 +238,7 @@ const Profile = (props) => {
               {!isPostSide && (
                 <>
                   {(user && user.comments) == null ? (
-                    <h1>Loading</h1>
+                    <Loading />
                   ) : user.comments.length == 0 ? (
                     <h1>No Comments</h1>
                   ) : (

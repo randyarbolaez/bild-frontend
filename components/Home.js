@@ -5,14 +5,7 @@ import styled from "styled-components";
 import User from "./User";
 import Posts from "./Posts";
 import Nav from "./Nav";
-
-let Title = styled.h2`
-  margin-bottom: 0.6vw;
-  font-family: "Montserrat", sans-serif;
-  color: #fffff4;
-  font-size: 5vw;
-  margin-top: 0;
-`;
+import Loading from "./Loading";
 
 const Home = () => {
   let user = null;
@@ -29,11 +22,7 @@ const Home = () => {
           <div>
             <div>
               <Nav />
-              {loading && (
-                <div>
-                  <Title>Loading</Title>
-                </div>
-              )}
+              {loading && <Loading />}
               <Posts />
             </div>
           </div>

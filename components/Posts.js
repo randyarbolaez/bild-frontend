@@ -5,6 +5,7 @@ import styled from "styled-components";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 import IndividualPost from "./IndividualPost";
+import Loading from "./Loading";
 
 const ALL_POSTS_QUERY = gql`
   query ALL_POSTS_QUERY {
@@ -58,7 +59,7 @@ const Posts = () => {
           <InfiniteScroll
             dataLength={posts.length}
             style={styles.container}
-            loader={<h1>Loading...</h1>}
+            loader={<Loading />}
           >
             {posts &&
               posts.map((post) => <IndividualPost key={post.id} post={post} />)}
