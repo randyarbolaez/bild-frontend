@@ -1,4 +1,3 @@
-// import App from "next/app";
 import Page from "../components/Page";
 import { ApolloProvider } from "react-apollo";
 import data from "../lib/data";
