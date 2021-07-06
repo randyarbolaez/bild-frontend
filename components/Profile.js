@@ -96,41 +96,57 @@ const CommentTitleButton = styled.input`
   }
 `;
 
-const SubjectContainer = styled.div`
+const CommentSubjectContainer = styled.div`
   margin-top: 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
-const IndividualPost = styled.div`
-  width: 20vw;
-  margin: 2vh 4vw;
+const PostSubjectContainer = styled.ul`
+  // margin-top: 24px;
   display: flex;
-  flex-direction: column;
-  background: #f8f8ff;
-  align-items: center;
-  border-radius: 0.5vw 0.5vw 0.5vw 0.5vw;
+  flex-wrap: wrap;
+  list-style-type: none;
+`;
+
+const IndividualPost = styled.li`
+  width: 20vw;
+  display: flex;
+  height: 40vh;
+  flex-grow: 1;
+  &:last-child {
+    flex-grow: 10;
+  }
 `;
 
 const PostImage = styled.img`
-  width: 100%;
-  border-radius: 0.5vw 0.5vw 0% 0%;
+  max-height: 100%;
+  min-width: 100%;
+  object-fit: cover;
+  vertical-align: bottom;
+  // border: 0.5px solid #ced4da;
 `;
 
 const CaptionContainer = styled.div`
-  display: flex;
-  align-items: flex-end;
-  width: 96%;
+  // display: inline;
+  // position: absolute;
+  // right: 10px;
+  margin: 0 auto;
+  position: absolute;
 `;
 
 const PostCaption = styled.p`
   font-size: 1.02vw;
-  color: #939393;
-  width: 100%;
-  margin-top: 0;
-  text-align: left;
-  padding-left: 1vw;
+  color: red;
+  margin: 0;
+  padding: 0 1vw;
+  background: #ced4da;
+  // background: transparent;
+  // height: 10px;
+  // border: 1px solid red;
+  // width: 80%;
+  word-wrap: break-word;
 `;
 
 let IndividualComment = styled.div`
@@ -170,6 +186,8 @@ let CommentTimestamp = styled.p`
 
 const Profile = (props) => {
   const [isPostSide, setIsPostSide] = useState(true);
+  const [captionShown, setCaptionShown] = useState(false);
+  const [captionId, setCaptionId] = useState("");
   let user = null;
 
   const months = [
@@ -216,50 +234,72 @@ const Profile = (props) => {
                 type="button"
               />
             </TitleButtonContainer>
-            <SubjectContainer>
+            <>
               {isPostSide && (
-                <>
+                <PostSubjectContainer>
                   {(user && user.posts) == null ? (
                     <Loading />
                   ) : user.posts.length == 0 ? (
                     <h1>No Posts</h1>
                   ) : (
-                    user.posts.map((post) => (
-                      <IndividualPost key={post.id}>
-                        <PostImage src={post.picture} alt={post.caption} />
-                        <CaptionContainer>
-                          <PostCaption>{post.caption}</PostCaption>
-                        </CaptionContainer>
-                      </IndividualPost>
-                    ))
+                    user.posts.map((post) => {
+                      return (
+                        <IndividualPost key={post.id}>
+                          <PostImage
+                            title={post.caption}
+                            src={post.picture}
+                            alt={post.caption}
+                            onMouseEnter={() => {
+                              setCaptionId(post.id);
+                              setCaptionShown(true);
+                            }}
+                            onMouseMove={() => {
+                              setCaptionId(post.id);
+                              setCaptionShown(true);
+                            }}
+                            onMouseLeave={() => {
+                              setCaptionId("");
+                              setCaptionShown(false);
+                            }}
+                          />
+                          {captionShown && captionId == post.id && (
+                            <CaptionContainer>
+                              <PostCaption>{post.caption}</PostCaption>
+                            </CaptionContainer>
+                          )}
+                        </IndividualPost>
+                      );
+                    })
                   )}
-                </>
+                </PostSubjectContainer>
               )}
               {!isPostSide && (
-                <>
+                <CommentSubjectContainer>
                   {(user && user.comments) == null ? (
                     <Loading />
                   ) : user.comments.length == 0 ? (
                     <h1>No Comments</h1>
                   ) : (
                     user.comments.map((comment) => (
-                      <IndividualComment>
-                        <CommentContent>{comment.content}</CommentContent>
-                        <CommentTimestamp>
-                          {`${
-                            months[new Date(comment.createdAt).getMonth()]
-                          } ${new Date(
-                            comment.createdAt
-                          ).getDate()}, ${new Date(
-                            comment.createdAt
-                          ).getFullYear()}`}
-                        </CommentTimestamp>
-                      </IndividualComment>
+                      <>
+                        <IndividualComment>
+                          <CommentContent>{comment.content}</CommentContent>
+                          <CommentTimestamp>
+                            {`${
+                              months[new Date(comment.createdAt).getMonth()]
+                            } ${new Date(
+                              comment.createdAt
+                            ).getDate()}, ${new Date(
+                              comment.createdAt
+                            ).getFullYear()}`}
+                          </CommentTimestamp>
+                        </IndividualComment>
+                      </>
                     ))
                   )}
-                </>
+                </CommentSubjectContainer>
               )}
-            </SubjectContainer>
+            </>
           </Container>
         );
       }}
