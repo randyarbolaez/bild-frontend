@@ -49,7 +49,9 @@ const Container = styled.div`
   margin: 2vh 5vw 0 5vw;
 `;
 
-const TitleButtonContainer = styled.div``;
+const TitleButtonContainer = styled.div`
+  margin-bottom: 2vh;
+`;
 
 const PostTitleButton = styled.input`
   background: none;
@@ -97,22 +99,24 @@ const CommentTitleButton = styled.input`
 `;
 
 const CommentSubjectContainer = styled.div`
-  margin-top: 24px;
+  // margin-top: 24px;
+  margin-bottom: 2vh;
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
-const PostSubjectContainer = styled.ul`
+const PostSubjectContainer = styled.div`
   // margin-top: 24px;
+  margin-bottom: 2vh;
   display: flex;
   flex-wrap: wrap;
   list-style-type: none;
 `;
 
-const IndividualPost = styled.li`
-  width: 20vw;
+const IndividualPost = styled.div`
   display: flex;
+  width: 20vw;
   height: 40vh;
   flex-grow: 1;
   &:last-child {
@@ -125,28 +129,26 @@ const PostImage = styled.img`
   min-width: 100%;
   object-fit: cover;
   vertical-align: bottom;
-  // border: 0.5px solid #ced4da;
 `;
 
 const CaptionContainer = styled.div`
-  // display: inline;
-  // position: absolute;
-  // right: 10px;
-  margin: 0 auto;
-  position: absolute;
+  position: relative;
+  display: flex;
+  background: yellow;
+  justify-content: center;
 `;
 
 const PostCaption = styled.p`
+  word-wrap: break-word;
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
   font-size: 1.02vw;
-  color: red;
+  font-weight: 700;
+  color: #ced4da;
+  background: rgba(0, 0, 0, 0.5);
   margin: 0;
   padding: 0 1vw;
-  background: #ced4da;
-  // background: transparent;
-  // height: 10px;
-  // border: 1px solid red;
-  // width: 80%;
-  word-wrap: break-word;
 `;
 
 let IndividualComment = styled.div`
