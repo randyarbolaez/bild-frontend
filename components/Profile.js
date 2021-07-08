@@ -132,14 +132,11 @@ const PostImage = styled.img`
 `;
 
 const CaptionContainer = styled.div`
-  position: relative;
   display: flex;
-  background: yellow;
-  justify-content: center;
+  position: relative;
 `;
 
 const PostCaption = styled.p`
-  word-wrap: break-word;
   position: absolute;
   bottom: 0px;
   right: 0px;
@@ -149,6 +146,7 @@ const PostCaption = styled.p`
   background: rgba(0, 0, 0, 0.5);
   margin: 0;
   padding: 0 1vw;
+  width: 22.5vw;
 `;
 
 let IndividualComment = styled.div`
@@ -248,7 +246,6 @@ const Profile = (props) => {
                       return (
                         <IndividualPost key={post.id}>
                           <PostImage
-                            title={post.caption}
                             src={post.picture}
                             alt={post.caption}
                             onMouseEnter={() => {
@@ -266,7 +263,9 @@ const Profile = (props) => {
                           />
                           {captionShown && captionId == post.id && (
                             <CaptionContainer>
-                              <PostCaption>{post.caption}</PostCaption>
+                              <PostCaption numberOfLines={1}>
+                                {post.caption}
+                              </PostCaption>
                             </CaptionContainer>
                           )}
                         </IndividualPost>
