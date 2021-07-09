@@ -100,10 +100,13 @@ const CommentTitleButton = styled.input`
 
 const CommentSubjectContainer = styled.div`
   // margin-top: 24px;
-  margin-bottom: 2vh;
+  // margin-bottom: 2vh;
   display: flex;
-  flex-direction: column;
+  // flex-direction: column;
   align-items: center;
+  // flex: 1;
+  flex-wrap: wrap;
+  align-items: flex-start;
 `;
 
 const PostSubjectContainer = styled.div`
@@ -116,11 +119,15 @@ const PostSubjectContainer = styled.div`
 
 const IndividualPost = styled.div`
   display: flex;
+  transition: 0.3s;
   width: 20vw;
   height: 40vh;
   flex-grow: 1;
   &:last-child {
     flex-grow: 10;
+  }
+  :hover {
+    border-bottom: 10px solid #ced4da;
   }
 `;
 
@@ -151,37 +158,36 @@ const PostCaption = styled.p`
 
 let IndividualComment = styled.div`
   display: flex;
-  align-items: flex-end;
-  transition: 0.8s;
-  width: 50vw;
-  margin: 1.2vh 1.2vw;
-  border-top: 0.2vw solid #f7ece1;
-  border-bottom: 0.2vw solid #f7ece1;
+  transition: 0.3s;
+  width: 20vw;
+  height: auto;
+  background: #f7ece1;
+  position: relative;
+  flex-grow: 1;
+  :hover {
+    border-top: 10px solid #ced4da;
+  }
 `;
 
 let CommentContent = styled.h2`
   display: flex;
   margin: 0;
-  align-items: left;
-  padding-left: 1.2vw;
+  justify-content: center;
   font-size: 1vw;
   color: #788475;
-  width: 50vw;
+  width: 100%;
   font-weight: 400;
+  overflow-wrap: anywhere;
+  padding: 0.9vw;
 `;
 
 let CommentTimestamp = styled.p`
-  background: #e0e0e0;
-  background: #f7ece1;
+  position: absolute;
+  right: 0;
+  bottom: 0;
   font-size: 0.8vw;
-  width: 10vw;
-  display: flex;
-  justify-content: center;
   margin: 0;
-  align-items: center;
-  text-align: center;
-  padding-top: auto;
-  margin: auto;
+  // padding: 1vw;
 `;
 
 const Profile = (props) => {
@@ -282,20 +288,18 @@ const Profile = (props) => {
                     <h1>No Comments</h1>
                   ) : (
                     user.comments.map((comment) => (
-                      <>
-                        <IndividualComment>
-                          <CommentContent>{comment.content}</CommentContent>
-                          <CommentTimestamp>
-                            {`${
-                              months[new Date(comment.createdAt).getMonth()]
-                            } ${new Date(
-                              comment.createdAt
-                            ).getDate()}, ${new Date(
-                              comment.createdAt
-                            ).getFullYear()}`}
-                          </CommentTimestamp>
-                        </IndividualComment>
-                      </>
+                      <IndividualComment key={comment.id}>
+                        <CommentContent>{comment.content}</CommentContent>
+                        <CommentTimestamp>
+                          {`${
+                            months[new Date(comment.createdAt).getMonth()]
+                          } ${new Date(
+                            comment.createdAt
+                          ).getDate()}, ${new Date(
+                            comment.createdAt
+                          ).getFullYear()}`}
+                        </CommentTimestamp>
+                      </IndividualComment>
                     ))
                   )}
                 </CommentSubjectContainer>
