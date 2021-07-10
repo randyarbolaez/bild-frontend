@@ -160,34 +160,40 @@ let IndividualComment = styled.div`
   display: flex;
   transition: 0.3s;
   width: 20vw;
-  height: auto;
+  height: 13vh;
   background: #f7ece1;
   position: relative;
   flex-grow: 1;
   :hover {
-    border-top: 10px solid #ced4da;
+    border-bottom: 10px solid #ced4da;
+    h2 {
+      margin: 0;
+    }
+    p {
+      color: #ced4da;
+    }
   }
 `;
 
 let CommentContent = styled.h2`
   display: flex;
-  margin: 0;
   justify-content: center;
   font-size: 1vw;
   color: #788475;
   width: 100%;
   font-weight: 400;
   overflow-wrap: anywhere;
-  padding: 0.9vw;
+  padding: 0 1vw;
+  transition: 0.3s;
 `;
 
 let CommentTimestamp = styled.p`
   position: absolute;
   right: 0;
-  bottom: 0;
+  top: 0;
   font-size: 0.8vw;
   margin: 0;
-  // padding: 1vw;
+  transition: 0.3s;
 `;
 
 const Profile = (props) => {
