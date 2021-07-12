@@ -99,18 +99,13 @@ const CommentTitleButton = styled.input`
 `;
 
 const CommentSubjectContainer = styled.div`
-  // margin-top: 24px;
-  // margin-bottom: 2vh;
   display: flex;
-  // flex-direction: column;
   align-items: center;
-  // flex: 1;
   flex-wrap: wrap;
   align-items: flex-start;
 `;
 
 const PostSubjectContainer = styled.div`
-  // margin-top: 24px;
   margin-bottom: 2vh;
   display: flex;
   flex-wrap: wrap;
@@ -123,6 +118,7 @@ const IndividualPost = styled.div`
   width: 20vw;
   height: 40vh;
   flex-grow: 1;
+  border-bottom: 0px solid transparent;
   &:last-child {
     flex-grow: 10;
   }
@@ -164,13 +160,10 @@ let IndividualComment = styled.div`
   background: #f7ece1;
   position: relative;
   flex-grow: 1;
+  border: 1px solid #ced4da;
   :hover {
-    border-bottom: 10px solid #ced4da;
     h2 {
-      margin: 0;
-    }
-    p {
-      color: #ced4da;
+      color: #474e45;
     }
   }
 `;
