@@ -67,9 +67,7 @@ let Input = styled.input`
     border-color: #cdcdcd;
   }
   ::placeholder {
-    color: #cf8884;
     color: #9a9a9a;
-    // color: #e4766f;
   }
 `;
 

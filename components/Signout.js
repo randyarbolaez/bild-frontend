@@ -25,7 +25,6 @@ const Button = styled.input`
   color: #fffff4;
   :hover {
     border-bottom: 3.5px solid #fa7775;
-    // color: #9dc5bb;
     cursor: pointer;
   }
 `;

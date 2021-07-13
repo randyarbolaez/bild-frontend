@@ -41,28 +41,6 @@ let SubTitle = styled.p`
   align-self: center;
 `;
 
-// let InputButton = styled.input`
-//   font-family: "Montserrat", sans-serif;
-//   font-weight: bold;
-//   width: 30%;
-//   margin: 4px 2px;
-//   padding: 10px 0;
-//   border: none;
-//   border-radius: 16px;
-//   background: white;
-//   border-color: red;
-//   color: #8ea8c3;
-//   align-self: center;
-//   text-decoration: none;
-//   font-size: 1.2vw;
-//   cursor: pointer;
-//   outline: none;
-//   // background-image: linear-gradient(to right, #fffff4, #fe5f55);
-//   transition: transform 0.5s ease-in-out;
-//   :hover {
-//     transform: scale(1.2);
-//   }
-// `;
 let InputButton = styled.input`
   font-family: "Montserrat", sans-serif;
   font-weight: bold;
@@ -70,10 +48,8 @@ let InputButton = styled.input`
   margin: 4px 2px;
   padding: 10px 0;
   border: none;
-  // border-radius: 16px;
   border-bottom: 3px solid #f8f8ff;
   background: transparent;
-  // border-color: red;
   color: #8ea8c3;
   align-self: center;
   text-decoration: none;
@@ -129,8 +105,6 @@ export default function authenticate() {
                       </SubTitle>
                       <InputButton
                         style={{
-                          // backgroundColor: "#fe5f55",
-                          color: "#fffff4",
                           color: "#fe5f55",
                           borderColor: "#fe776e",
                         }}
@@ -156,7 +130,6 @@ export default function authenticate() {
                       </SubTitle>
                       <InputButton
                         style={{
-                          // backgroundColor: "#fffff4",
                           color: "#fe5f55",
                           color: "#fffff4",
                           borderColor: "#fafaf9",

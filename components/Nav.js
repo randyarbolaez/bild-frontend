@@ -12,7 +12,6 @@ import User from "./User";
 import Signout from "./Signout";
 
 const Container = styled.div`
-  // height: 10vh;
   display: flex;
   justify-content: space-between;
   font-family: "Julius Sans One", sans-serif;
