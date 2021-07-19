@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import styled from "styled-components";
 import {
+  RiSpaceShipFill,
+  RiSpaceShipLine,
   RiLayoutTop2Fill,
   RiLayoutTop2Line,
   RiCamera2Fill,
@@ -43,10 +45,15 @@ const Username = styled.h1`
   }
 `;
 
-const TitleContainer = styled.h1`
-  font-size: 4.5vw;
+const TitleContainer = styled.p`
+  position: fixed;
+  left: 10px;
+  bottom: 70px;
+  margin: 1vh 0;
+  zindex: 6;
+  transform: rotate(-90deg);
   color: #e58c8a;
-  margin: 0;
+  // font-size: 1.3em;
   font-weight: 600;
   transition: 0.5s;
   :hover {
@@ -106,22 +113,25 @@ const Nav = () => {
             <div
               style={{
                 position: "fixed",
-                bottom: "20px",
+                bottom: "2%",
+                left: "15px",
                 zIndex: 6,
               }}
             >
               <ShowNavButton
                 onClick={() => {
                   setNavInfoShown(!navInfoShown);
-                  if (!navInfoShown) {
-                    scroll(0, 0);
-                  }
                 }}
               >
-                {navInfoShown ? (
+                {/* {navInfoShown ? (
                   <RiLayoutTop2Line size={"3vw"} color={"#fe5f55"} />
                 ) : (
                   <RiLayoutTop2Fill size={"3vw"} color={"#fe5f55"} />
+                )} */}
+                {navInfoShown ? (
+                  <RiSpaceShipLine size={"2.5em"} color={"#fe5f55"} />
+                ) : (
+                  <RiSpaceShipFill size={"2.5em"} color={"#fe5f55"} />
                 )}
               </ShowNavButton>
             </div>
@@ -129,10 +139,10 @@ const Nav = () => {
               style={{
                 position:
                   navInfoShown && url !== "authenticate" ? null : "fixed",
-                height: navInfoShown ? "10vh" : null,
+                // height: navInfoShown ? "10vh" : null,
               }}
             >
-              {navInfoShown ? (
+              {/* {navInfoShown ? (
                 <>
                   <Link href="/" as={"/"}>
                     <a style={{ display: "flex", alignItems: "center" }}>
@@ -175,7 +185,93 @@ const Nav = () => {
                     </Wrapper>
                   )}
                 </>
-              ) : null}
+              ) : null} */}
+              {navInfoShown && (
+                <>
+                  <Link href="/" as={"/"}>
+                    <a
+                      style={{
+                        position: "fixed",
+                        left: "10px",
+                        bottom: "70px",
+                        margin: "1vh 0",
+                        zindex: "6",
+                      }}
+                    >
+                      <TitleContainer>BILD</TitleContainer>
+                    </a>
+                  </Link>
+                  {!user && (
+                    <Link href="/authenticate" as={"/authenticate"}>
+                      <a>
+                        <Button
+                          style={{
+                            position: "fixed",
+                            bottom: "16%",
+                            left: "3%",
+                            zIndex: 6,
+                          }}
+                        >
+                          Sign Up/In
+                        </Button>
+                      </a>
+                    </Link>
+                  )}
+                  {user && (
+                    <Wrapper>
+                      <Link
+                        href={{
+                          pathname: "create",
+                        }}
+                      >
+                        <a>
+                          <Button
+                            style={{
+                              position: "fixed",
+                              left: "70%",
+                              bottom: "50px",
+                            }}
+                          >
+                            Create Post
+                          </Button>
+                        </a>
+                      </Link>
+                      <span
+                        style={{
+                          position: "fixed",
+                          left: "70px",
+                          bottom: "20px",
+                          zIndex: 6,
+                        }}
+                      >
+                        <Signout />
+                      </span>
+                      <Link
+                        href={{
+                          pathname: "user-profile",
+                          query: { id: user.id },
+                        }}
+                        as={{
+                          pathname: "user-profile",
+                          query: { id: user.id },
+                        }}
+                      >
+                        <a
+                          style={{
+                            position: "fixed",
+                            bottom: "20px",
+                            zIndex: 6,
+                          }}
+                        >
+                          <Username style={{ transform: "skewY(-11deg)" }}>
+                            {user.name}
+                          </Username>
+                        </a>
+                      </Link>
+                    </Wrapper>
+                  )}
+                </>
+              )}
             </Container>
           </>
         );
