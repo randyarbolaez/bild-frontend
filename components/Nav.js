@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import styled from "styled-components";
-import {
-  RiSpaceShipFill,
-  RiSpaceShipLine,
-  RiLayoutTop2Fill,
-  RiLayoutTop2Line,
-  RiCamera2Fill,
-  RiCamera2Line,
-} from "react-icons/ri";
+import { CgBolt } from "react-icons/cg";
 
 import User from "./User";
 import Signout from "./Signout";
+
+const ShowNavButton = styled.button`
+  background: transparent;
+  border: none;
+  :hover {
+    cursor: pointer;
+  }
+`;
 
 const Container = styled.div`
   display: flex;
@@ -22,38 +23,15 @@ const Container = styled.div`
   margin: 0 5vw;
 `;
 
-const Wrapper = styled.div`
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-`;
-
-const ShowNavButton = styled.button`
-  background: transparent;
-  border: none;
-  :hover {
-    cursor: pointer;
-  }
-`;
-
-const Username = styled.h1`
-  color: #fe7471;
-  font-size: 1.6vw;
-  :hover {
-    color: red;
-    cursor: pointer;
-  }
-`;
-
-const TitleContainer = styled.p`
+const TitleContainer = styled.span`
   position: fixed;
-  left: 10px;
-  bottom: 70px;
-  margin: 1vh 0;
+  left: 1vw;
+  bottom: 5vh;
+  margin: 1% 0;
   zindex: 6;
   transform: rotate(-90deg);
   color: #e58c8a;
-  // font-size: 1.3em;
+  font-size: 2vh;
   font-weight: 600;
   transition: 0.5s;
   :hover {
@@ -76,9 +54,29 @@ const Button = styled.button`
   }
 `;
 
+const SignoutButton = styled.span`
+  position: fixed;
+  left: 70px;
+  bottom: 20px;
+  zindex: 6;
+`;
+
+const Username = styled.h1`
+  color: #fe7471;
+  font-size: 1.6vw;
+  position: fixed;
+  bottom: 20px;
+  left: 0px;
+  zindex: 6;
+  transform: skewY(-11deg);
+  :hover {
+    color: red;
+    cursor: pointer;
+  }
+`;
 const Nav = () => {
   let user = null;
-  let [navInfoShown, setNavInfoShown] = useState(false);
+  let [navInfoShown, setNavInfoShown] = useState(!false);
   let [url, setUrl] = useState("");
 
   useEffect(() => {
@@ -109,95 +107,36 @@ const Nav = () => {
           user = data.user;
         }
         return (
-          <>
-            <div
-              style={{
-                position: "fixed",
-                bottom: "2%",
-                left: "15px",
-                zIndex: 6,
-              }}
-            >
+          <div
+            onMouseLeave={() => {
+              setNavInfoShown(false);
+            }}
+          >
+            <>
               <ShowNavButton
-                onClick={() => {
-                  setNavInfoShown(!navInfoShown);
+                style={{
+                  position: "fixed",
+                  bottom: "2vh",
+                  left: "0.5vw",
+                  zIndex: 6,
+                }}
+                onMouseEnter={() => {
+                  setNavInfoShown(true);
                 }}
               >
-                {/* {navInfoShown ? (
-                  <RiLayoutTop2Line size={"3vw"} color={"#fe5f55"} />
-                ) : (
-                  <RiLayoutTop2Fill size={"3vw"} color={"#fe5f55"} />
-                )} */}
-                {navInfoShown ? (
-                  <RiSpaceShipLine size={"2.5em"} color={"#fe5f55"} />
-                ) : (
-                  <RiSpaceShipFill size={"2.5em"} color={"#fe5f55"} />
-                )}
+                <CgBolt size={"4vh"} color={"#fe5f55"} />
               </ShowNavButton>
-            </div>
+            </>
             <Container
               style={{
                 position:
                   navInfoShown && url !== "authenticate" ? null : "fixed",
-                // height: navInfoShown ? "10vh" : null,
               }}
             >
-              {/* {navInfoShown ? (
-                <>
-                  <Link href="/" as={"/"}>
-                    <a style={{ display: "flex", alignItems: "center" }}>
-                      <TitleContainer>BILD</TitleContainer>
-                    </a>
-                  </Link>
-                  {!user && (
-                    <Link href="/authenticate" as={"/authenticate"}>
-                      <a>
-                        <Button>Sign Up/In</Button>
-                      </a>
-                    </Link>
-                  )}
-                  {user && (
-                    <Wrapper>
-                      <Link
-                        href={{
-                          pathname: "create",
-                        }}
-                      >
-                        <a>
-                          <Button>Create Post</Button>
-                        </a>
-                      </Link>
-                      <Signout />
-                      <Link
-                        href={{
-                          pathname: "user-profile",
-                          query: { id: user.id },
-                        }}
-                        as={{
-                          pathname: "user-profile",
-                          query: { id: user.id },
-                        }}
-                      >
-                        <a>
-                          <Username>{user.name}</Username>
-                        </a>
-                      </Link>
-                    </Wrapper>
-                  )}
-                </>
-              ) : null} */}
               {navInfoShown && (
                 <>
                   <Link href="/" as={"/"}>
-                    <a
-                      style={{
-                        position: "fixed",
-                        left: "10px",
-                        bottom: "70px",
-                        margin: "1vh 0",
-                        zindex: "6",
-                      }}
-                    >
+                    <a>
                       <TitleContainer>BILD</TitleContainer>
                     </a>
                   </Link>
@@ -218,7 +157,7 @@ const Nav = () => {
                     </Link>
                   )}
                   {user && (
-                    <Wrapper>
+                    <>
                       <Link
                         href={{
                           pathname: "create",
@@ -236,16 +175,9 @@ const Nav = () => {
                           </Button>
                         </a>
                       </Link>
-                      <span
-                        style={{
-                          position: "fixed",
-                          left: "70px",
-                          bottom: "20px",
-                          zIndex: 6,
-                        }}
-                      >
+                      <SignoutButton>
                         <Signout />
-                      </span>
+                      </SignoutButton>
                       <Link
                         href={{
                           pathname: "user-profile",
@@ -256,24 +188,16 @@ const Nav = () => {
                           query: { id: user.id },
                         }}
                       >
-                        <a
-                          style={{
-                            position: "fixed",
-                            bottom: "20px",
-                            zIndex: 6,
-                          }}
-                        >
-                          <Username style={{ transform: "skewY(-11deg)" }}>
-                            {user.name}
-                          </Username>
+                        <a>
+                          <Username>{user.name}</Username>
                         </a>
                       </Link>
-                    </Wrapper>
+                    </>
                   )}
                 </>
               )}
             </Container>
-          </>
+          </div>
         );
       }}
     </User>
