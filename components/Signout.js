@@ -17,7 +17,7 @@ const Button = styled.input`
   background: none;
   margin-top: 0.3vw;
   border: none;
-  font-size: 1.6vw;
+  font-size: 2.3vh;
   font-weight: 600;
   outline: none;
   transition: border 0.4s ease-in-out;
