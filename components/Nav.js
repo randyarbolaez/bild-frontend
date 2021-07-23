@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import styled from "styled-components";
-import { CgBolt } from "react-icons/cg";
 import { FiAperture } from "react-icons/fi";
 
 import User from "./User";
@@ -12,8 +11,6 @@ const ShowNavButton = styled.button`
   border: none;
   transition: 1s;
   position: fixed;
-  bottom: 10vh;
-  left: 3vw;
   bottom: 11vh;
   left: 3.5vw;
   zindex: 6;
@@ -39,7 +36,6 @@ const TitleContainer = styled.span`
   zindex: 6;
   transform: rotate(-45deg);
   color: #e58c8a;
-  font-size: 2.5vh;
   font-size: 2.6vh;
   font-weight: 600;
   transition: 0.5s;
@@ -51,27 +47,21 @@ const TitleContainer = styled.span`
 const Button = styled.button`
   background: none;
   border: none;
-  font-size: 2.4vh;
   font-size: 2.2vh;
-  // font-size: 2.5vh;
   font-weight: 600;
   color: #fffff4;
   outline: none;
   transition: border 0.4s ease-in-out;
   border-bottom: 3.5px solid transparent;
   position: fixed;
-  bottom: 7.5vh;
-  left: 3.5vw;
   bottom: 9.3vh;
   left: 3.8vw;
   zindex: 6;
   transform: rotate(-45deg);
-  // transform: rotate(-50deg);
   :hover {
     border-bottom: 3.5px solid #fa7775;
     cursor: pointer;
   }
-  // display: none;
 `;
 
 const SignoutButton = styled.span`
@@ -84,7 +74,6 @@ const SignoutButton = styled.span`
 
 const Username = styled.h1`
   color: #fe7471;
-  font-size: 2vh;
   font-size: 2.5vh;
   position: fixed;
   bottom: 12.7vh;
