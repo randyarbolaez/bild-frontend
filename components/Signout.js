@@ -17,14 +17,13 @@ const Button = styled.input`
   background: none;
   margin-top: 0.3vw;
   border: none;
-  font-size: 2.3vh;
+  font-size: 2.5vh;
   font-weight: 600;
   outline: none;
-  transition: border 0.4s ease-in-out;
-  border-bottom: 3.5px solid transparent;
+  transition: color 0.4s ease-in-out;
   color: #fffff4;
   :hover {
-    border-bottom: 3.5px solid #fa7775;
+    color: #fe7471;
     cursor: pointer;
   }
 `;

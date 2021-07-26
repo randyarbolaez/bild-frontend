@@ -12,6 +12,7 @@ const ShowNavButton = styled.button`
   transition: 1s;
   position: fixed;
   bottom: 11vh;
+  bottom: 10.5vh;
   left: 3.5vw;
   zindex: 6;
   :hover {
@@ -31,57 +32,61 @@ const Container = styled.div`
 const TitleContainer = styled.span`
   position: fixed;
   left: 2vw;
+  left: 1.7vw;
   bottom: 11vh;
+  bottom: 12vh;
   margin: 1% 0;
   zindex: 6;
   transform: rotate(-45deg);
   color: #e58c8a;
   font-size: 2.6vh;
   font-weight: 600;
-  transition: 0.5s;
+  color: #fe928f;
+  transition: color 0.4s ease-in-out;
   :hover {
     color: #fe7471;
+    cursor: pointer;
   }
 `;
 
 const Button = styled.button`
   background: none;
   border: none;
-  font-size: 2.2vh;
+  font-size: 2.5vh;
   font-weight: 600;
-  color: #fffff4;
   outline: none;
-  transition: border 0.4s ease-in-out;
-  border-bottom: 3.5px solid transparent;
   position: fixed;
-  bottom: 9.3vh;
-  left: 3.8vw;
+  bottom: 8.6vh;
+  left: 4.3vw;
   zindex: 6;
-  transform: rotate(-45deg);
+  transform: rotate(-47deg);
+  color: #fe928f;
+  transition: color 0.4s ease-in-out;
   :hover {
-    border-bottom: 3.5px solid #fa7775;
+    color: #fe7471;
     cursor: pointer;
   }
 `;
 
 const SignoutButton = styled.span`
   position: fixed;
-  left: 0.3vw;
-  bottom: 7.8vh;
-  transform: rotate(45deg);
+  left: 0.1vw;
+  bottom: 7.5vh;
+  transform: rotate(47deg);
   zindex: 6;
 `;
 
 const Username = styled.h1`
-  color: #fe7471;
-  font-size: 2.5vh;
+  font-size: 2.8vh;
   position: fixed;
-  bottom: 12.7vh;
+  bottom: 12.3vh;
   left: 4.4vw;
   zindex: 6;
   transform: rotate(45deg);
+  color: #fe928f;
+  transition: color 0.4s ease-in-out;
   :hover {
-    color: red;
+    color: #fe7471;
     cursor: pointer;
   }
 `;
