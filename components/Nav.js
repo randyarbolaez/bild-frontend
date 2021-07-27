@@ -117,12 +117,12 @@ const Nav = () => {
             onMouseLeave={() => {
               setNavInfoShown(false);
             }}
+            onMouseEnter={() => {
+              setNavInfoShown(true);
+            }}
           >
             <>
               <ShowNavButton
-                onMouseEnter={() => {
-                  setNavInfoShown(true);
-                }}
                 style={{
                   bottom: !user ? "10vh" : null,
                   left: !user ? "3.5vw" : null,
